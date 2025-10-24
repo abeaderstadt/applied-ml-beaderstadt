@@ -1,4 +1,13 @@
-# applied-ml-template
+# Alissa’s Applied Machine Learning Project Template
+My personalized version of the applied-ml-template  where I build, test, and document machine learning projects from start to finish.
+
+## About
+This repo serves as my go to starting point for applied machine learning projects. It helps me keep everything clean, organized, and professional, from environment setup to documentation and testing.
+
+If you’re following along or checking out my work, this repo follows the same core structure and workflows outlined in the pro-analytics-02
+ guide, but with my own touch.
+
+ ## Project Overview
 
 > Use this repo to start a professional Python project.
 
