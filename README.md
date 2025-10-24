@@ -1,5 +1,5 @@
 # Alissa’s Applied Machine Learning Project Template
-My personalized version of the applied-ml-template  where I build, test, and document machine learning projects from start to finish.
+> My personalized version of the applied-ml-template  where I build, test, and document machine learning projects from start to finish.
 
 ## About
 This repo serves as my go to starting point for applied machine learning projects. It helps me keep everything clean, organized, and professional, from environment setup to documentation and testing.
