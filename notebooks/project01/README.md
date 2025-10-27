@@ -96,9 +96,9 @@ y_pred = model.predict(X_test)
 # How to Run
 
 ## 1. Open the Project Notebook
-Navigate to the notebooks/project02 folder and open the Jupyter notebook:
+Navigate to the notebooks/project01 folder and open the Jupyter notebook:
 
-ml02_beaderstadt.ipynb
+ml02.ipynb
 
 ## 2. Select the Correct Kernel
 Before running any cells, make sure the notebook is using the correct Python environment (kernel) where all required libraries are installed.
