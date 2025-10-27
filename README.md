@@ -34,10 +34,12 @@ Starter files for the example labs:
 Each project will be completed in its own folder.
 
 - notebooks/project01 folder:
-  - ml01.ipynb - COMPLETE THIS
+  - ml01.ipynb 
   - ml01.py - working script with just the code
-  - README.md - instructions - modify this to present your lab project
-
+  - README.md - instructions - presents my project 1
+- notebooks/project02 folder:
+  - ml02_beaderstadt.ipynb 
+  - README.md - instructions - presents my project 2
 ---
 
 ## WORKFLOW 1. Set Up Machine
