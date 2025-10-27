@@ -282,7 +282,7 @@ plt.show()
 
 
     
-![png](output_10_0.png)
+![png](ml01_files/output_10_0.png)
     
 
 
@@ -308,55 +308,55 @@ for column in data_frame.columns:
 
 
     
-![png](output_13_0.png)
+![png](ml01_files/output_13_0.png)
     
 
 
 
     
-![png](output_13_1.png)
+![png](ml01_files/output_13_1.png)
     
 
 
 
     
-![png](output_13_2.png)
+![png](ml01_files/output_13_2.png)
     
 
 
 
     
-![png](output_13_3.png)
+![png](ml01_files/output_13_3.png)
     
 
 
 
     
-![png](output_13_4.png)
+![png](ml01_files/output_13_4.png)
     
 
 
 
     
-![png](output_13_5.png)
+![png](ml01_files/output_13_5.png)
     
 
 
 
     
-![png](output_13_6.png)
+![png](ml01_files/output_13_6.png)
     
 
 
 
     
-![png](output_13_7.png)
+![png](ml01_files/output_13_7.png)
     
 
 
 
     
-![png](output_13_8.png)
+![png](ml01_files/output_13_8.png)
     
 
 
@@ -383,7 +383,7 @@ plt.show()
 
 
     
-![png](output_16_0.png)
+![png](ml01_files/output_16_0.png)
     
 
 
@@ -1135,7 +1135,7 @@ plt.show()
 
 
     
-![png](output_33_0.png)
+![png](ml01_files/output_33_0.png)
     
 
 

@@ -184,7 +184,7 @@ plt.show()
 
 
     
-![png](output_10_0.png)
+![png](ml02_files/output_10_0.png)
     
 
 
@@ -216,7 +216,7 @@ scatter_matrix(titanic[attributes], figsize=(10, 10))
 
 
     
-![png](output_12_1.png)
+![png](ml02_files/output_12_1.png)
     
 
 
@@ -236,7 +236,7 @@ plt.show()
 
 
     
-![png](output_14_0.png)
+![png](ml02_files/output_14_0.png)
     
 
 
@@ -256,7 +256,7 @@ plt.show()
 
 
     
-![png](output_16_0.png)
+![png](ml02_files/output_16_0.png)
     
 
 
