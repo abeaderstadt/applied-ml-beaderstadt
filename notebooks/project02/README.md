@@ -1,4 +1,4 @@
-# Beaderstadt Titanic Data Exploration and Feature Engineering
+# Project 2: Beaderstadt Titanic Data Exploration and Feature Engineering
 > My personalized exploration and manipulation of the Titanic Dataset.
 
 ## Project Overview
