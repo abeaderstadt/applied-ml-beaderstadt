@@ -1,89 +1,125 @@
-# Project 01
+# Project 1: Beaderstadt California Housing Price Prediction
+> My personalized exploration and manipulation of the California Housing Dataset.
 
-## Overview
-Businesses and organizations often need to understand the relationships between different factors to make better decisions.
-For example, a company may want to predict the fuel efficiency of a car based on its weight and engine size or estimate home prices based on square footage and location.
-Regression analysis helps identify and quantify these relationships between numerical features, providing insights that can be used for forecasting and decision-making.
+## Notebook
 
-This project demonstrates your ability to apply regression modeling techniques to a real-world dataset. You will:
-- Load and explore a dataset.
-- Choose and justify features for predicting a target variable.
-- Train a regression model and evaluate performance.
-- Compare multiple regression approaches.
-- Document your work in a structured Jupyter Notebook.
-
-## Dataset 
-Housing Prices Dataset (Predict home values based on features like square footage and location)  
-- We use the built-in dataset from scikit-learn:  
-   - `from sklearn.datasets import fetch_california_housing`  
-- Additional dataset available on Kaggle:  
-   - [Kaggle Housing Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)  
-
-## Python Library for Machine Learning: scikit-learn
-We use scikit-learn, built on NumPy, SciPy, and matplotlib
-   - Read more at <https://scikit-learn.org/>
-   - Scikit-learn supports classification, regression, and clustering.
-   - This project applies regression.
+You can view the full Jupyter notebook for this project here:  
+[ml01_beaderstadt.ipynb](https://github.com/abeaderstadt/applied-ml-beaderstadt/blob/main/notebooks/project01/ml01.ipynb)
 
 
-## Professional Python Setup and Workflow
-We follow professional Python practices. 
-Full instructions are available at <https://github.com/denisecase/pro-analytics-02/>. 
-
-
-**Important:** VS Code + Pylance may fail to recognize installed packages in Jupyter notebooks.  
-See the above guides for troubleshooting and solutions.  
+## Project Overview
+In this project, I worked with the California housing dataset to uncover which factors have the biggest impact on home values. I’ll be building a predictive model and interpreting the results to see what they tell us about housing trends in California.
 
 ---
 
-## Project Outline
-Machine learning projects follow a structured approach.
-We will use this approach throughout the course. 
+## Key Steps in This Project
 
-Start your notebook professionally with:
-- a single top-level title
-- your name (or alias)
-- the date
-- a brief introduction that describes the problem and the dataset.
-- Import the external Python libraries used (e.g., pandas, numpy, matplotlib, seaborn, sklearn, etc.)
+## 1. Import and Inspect the Data
+- Loaded the California housing dataset into a pandas DataFrame.
 
-Present your work in clearly numbered second-level and third-level headings
+- Inspected the dataset using `.info()`, `.head()`, `.describe()`, and `.isnull().sum()` to check for missing values and data types.
 
-### Section 1. Load and Explore the Data
-- 1.1 Load the dataset and display the first 10 rows.
-- 1.2 Check for missing values and display summary statistics.
+- Explored correlations among numeric features.
+  
+  - **Insights:**
+    - 20,640 data instances and 9 features..
 
-Analysis: What do you notice about the dataset? Are there any data issues?
+    - All features are numeric; no missing values.
 
-### Section 2. Visualize Feature Distributions
-- 2.1 Create histograms, boxplots, and scatterplots.
-- 2.2 Identify patterns or anomalies in feature distributions.
+    - Strong predictors include `MedInc` (median income) and `AveRooms` (average rooms).
 
-Analysis: What patterns or anomalies do you see? Do any features stand out?
+## 2. Data Exploration and Preparation
 
-### Section 3. Feature Selection and Justification
-- 3.1 Choose two input features for predicting the target.
-- 3.2 Justify your selection with reasoning.
+## 2.1 Visual Exploration
+- Created histograms, boxplots, scatter plots, and a pairplot.
 
-Analysis: Why did you choose these features? How might they impact predictions?
+- Examined relationships between features and target variable (MedHouseVal).
 
-### Section 4. Train a Linear Regression Model
-- 4.1 Define X (features) and y (target).
-- 4.2 Train a Linear Regression model using Scikit-Learn.
-- 4.3 Report R^2, MAE, RMSE.
+  - **Observations:**
 
-Analysis: How well did the model perform? Any surprises in the results?
+    - `MedInc` and `MedHouseVal` show a clear positive correlation.
 
-See [EXAMPLE_ANALYSIS](./EXAMPLE_ANALYSIS.md) for more.
+    - `AveRooms` also contributes to house value prediction.
+
+    - Some features (like `HouseAge`) are less predictive on their own.
+  
+    - Outliers exist in `AveRooms`, `AveBedrms`, and `Population`.
+
+## 2.2 Feature Selection
+
+- Selected input features: `MedInc` and `AveRooms`.
+
+- Target variable: `MedHouseVal`.
+  
+  - **Reasoning:**
+
+    - `MedInc` is the strongest driver of house prices.
+
+    - `AveRooms` contributes additional context to household size and property value.
+
+
+# 3. Data Splitting
+
+- Split data into training and test sets (80% train / 20% test) using train_test_split.
+```
+X_train, X_test, y_train, y_test = train_test_split(df_X, df_y, test_size=0.2, random_state=42)
+```
+- Ensures reproducibility and fair evaluation of model performance.
+
+# 4. Model Training and Evaluation
+## 4.1 Train Linear Regression Model
+- Trained a LinearRegression model using the training data.
+```
+model = LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+## 4.2 Model Performance Metrics
+
+- R²: 0.46 - The model explains about 46% of the variation in house prices.
+
+- MAE: 0.62 - Average prediction error of $62,000.
+
+- RMSE: 0.84 - Typical prediction error of $84,000.
+
+## 4.3 Actual vs Predicted Values
+
+- Scatter plot shows predicted values mostly track actual values, with some spread for higher-priced homes.
+
+# 5. Key Takeaways
+- Median income (`MedInc`) is the most influential predictor.
+
+- Average number of rooms (`AveRooms`) adds context but is less critical.
+
+- Outliers in features can affect prediction accuracy.
+
+- Adding more features (`house age`, `population`, `location`) could improve model performance.
+
+- Linear regression provides a reasonable baseline but may be enhanced with more complex models.
 
 ---
+# How to Run
 
-## README.md (Required)
+## 1. Open the Project Notebook
+Navigate to the notebooks/project01 folder and open the Jupyter notebook:
 
-Include a professional README.md. Include:
-- a personalized title
-- an introduction to your project
-- a clickable link to your notebook file.
-- Instructions on how to set up your virtual environment and run your notebook locally.
-   
-If starting with an assignment README, remove the parts you do not need to present your project.
+ml02.ipynb
+
+## 2. Select the Correct Kernel
+Before running any cells, make sure the notebook is using the correct Python environment (kernel) where all required libraries are installed.
+- In VS Code, check the top right of the notebook for the selected kernel.
+- Switch to your project’s virtual environment if needed.
+
+## 3. Clear Kernel / Outputs (Optional but Helpful)
+If the notebook has previously been run, you can clear all outputs to start fresh:
+- In VS Code or Jupyter, use Kernel -> Restart & Clear Outputs.
+- This ensures that no stale variables or plots interfere with your current run.
+
+## 4. Run the Notebook
+In VS Code, ensure your Python environment is active.
+Run each cell sequentially to execute the analysis, visualizations, and feature engineering.
+
+## 5.View Results
+Plots and tables will display inline in the notebook.
+Check the final outputs for insights on survival patterns and feature preparation.
+

@@ -1,7 +1,7 @@
 # mkdocs.yml
 # Configuration file for MkDocs (Automated project documentation generator)
 
-site_name: Applied ML Project
+site_name: Beaderstadt Applied ML Projects
 site_url: https://abeaderstadt.github.io/beaderstadt-ml-template/
 repo_url: https://github.com/abeaderstadt/applied-ml-beaderstadt
 site_description: Predicting California housing prices using linear regression and data exploration
