@@ -4,7 +4,7 @@
 ## Notebook
 
 You can view the full Jupyter notebook for this project here:  
-[ml01_beaderstadt.ipynb](https://github.com/abeaderstadt/applied-ml-beaderstadt/blob/main/notebooks/project02/ml02_beaderstadt.ipynb)
+[ml02_beaderstadt.ipynb](https://github.com/abeaderstadt/applied-ml-beaderstadt/blob/main/notebooks/project02/ml02_beaderstadt.ipynb)
 
 ## Project Overview
 In this project, I worked with the Titanic dataset to explore patterns, clean and transform the data, create new features, and prepare the dataset for potential machine learning models. The goal was to understand factors affecting survival rates and demonstrate a structured workflow for data analysis and feature preparation.
