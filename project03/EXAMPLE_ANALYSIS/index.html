@@ -1,0 +1,2700 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Predicting California housing prices using linear regression and data exploration">
+      
+      
+        <meta name="author" content="Alissa Beaderstadt">
+      
+      
+        <link rel="canonical" href="https://abeaderstadt.github.io/beaderstadt-ml-template/project03/EXAMPLE_ANALYSIS/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../project04/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Analysis - Beaderstadt Applied ML Projects</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#beaderstadt-titanic-dataset-classification-machine-learning-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-header__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beaderstadt Applied ML Projects
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-nav__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Beaderstadt Applied ML Projects
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 01
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Project 01
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 02
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Project 02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 03
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project 03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-import-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Import the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1. Import the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-load-the-titanic-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Load the Titanic Dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-data-exploration-and-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Data Exploration and Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Data Exploration and Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-handle-missing-values-and-clean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Handle Missing Values and Clean Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-choose-features-and-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Choose features and target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-train-a-classification-model-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Train a Classification Model (Decision Tree)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Train a Classification Model (Decision Tree)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-create-and-train-model-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Create and Train Model (Decision Tree)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-predict-and-evaluate-model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Predict and Evaluate Model Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-report-confusion-matrix-as-a-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Report Confusion Matrix (as a heatmap)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-report-decision-tree-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Report Decision Tree Plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-compare-alternative-models-svc-nn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Compare Alternative Models (SVC, NN)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Compare Alternative Models (SVC, NN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-train-and-evaluate-model-svc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Train and Evaluate Model (SVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-visualize-support-vectors-1d-case-1-and-2d-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Visualize Support Vectors (1D Case 1 and 2D Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-train-and-evaluate-model-neural-network-on-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Train and Evaluate Model (Neural Network on Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-visualize-neural-network-on-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Visualize (Neural Network on Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-final-thoughts-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Final Thoughts &amp; Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Final Thoughts &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-comparison-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Comparison Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges-and-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 04
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Project 04
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-import-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Import the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1. Import the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-load-the-titanic-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Load the Titanic Dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-data-exploration-and-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Data Exploration and Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Data Exploration and Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-handle-missing-values-and-clean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Handle Missing Values and Clean Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-choose-features-and-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Choose features and target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-train-a-classification-model-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Train a Classification Model (Decision Tree)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Train a Classification Model (Decision Tree)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-create-and-train-model-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Create and Train Model (Decision Tree)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-predict-and-evaluate-model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Predict and Evaluate Model Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-report-confusion-matrix-as-a-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Report Confusion Matrix (as a heatmap)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-report-decision-tree-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Report Decision Tree Plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-compare-alternative-models-svc-nn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Compare Alternative Models (SVC, NN)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Compare Alternative Models (SVC, NN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-train-and-evaluate-model-svc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Train and Evaluate Model (SVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-visualize-support-vectors-1d-case-1-and-2d-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Visualize Support Vectors (1D Case 1 and 2D Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-train-and-evaluate-model-neural-network-on-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Train and Evaluate Model (Neural Network on Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-visualize-neural-network-on-case-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Visualize (Neural Network on Case 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-final-thoughts-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Final Thoughts &amp; Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Final Thoughts &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-comparison-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Comparison Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges-and-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="beaderstadt-titanic-dataset-classification-machine-learning-models">Beaderstadt Titanic Dataset: Classification Machine Learning Models<a class="headerlink" href="#beaderstadt-titanic-dataset-classification-machine-learning-models" title="Permanent link">&para;</a></h1>
+<p><strong>Author:</strong> Alissa Beaderstadt<br>
+<strong>Date:</strong> November 3, 2025<br></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this project, I’ll extend my previous Titanic dataset exploration to include classification models: Decision Tree, Support Vector Machine (SVM), and Neural Network. Then I'll evaluate model performance across three feature sets (Base, Raise the Bar, Lower the Bar).</p>
+<h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
+<p>Import the necessary Python libraries for this notebook.  </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Core libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Model selection</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="c1"># Evaluation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+</code></pre></div>
+<h2 id="section-1-import-the-data">Section 1. Import the Data<a class="headerlink" href="#section-1-import-the-data" title="Permanent link">&para;</a></h2>
+<h3 id="11-load-the-titanic-dataset">1.1 Load the Titanic Dataset<a class="headerlink" href="#11-load-the-titanic-dataset" title="Permanent link">&para;</a></h3>
+<p>The Titanic dataset is built into <code>Seaborn</code>, so we can easily load it without needing to import an external file. We don't need a detailed inspection of the data as we've done that previously and are familiar.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load Titanic dataset</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display just a few records to verify</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   survived  pclass     sex   age  sibsp  parch     fare embarked   class  \
+0         0       3    male  22.0      1      0   7.2500        S   Third   
+1         1       1  female  38.0      1      0  71.2833        C   First   
+2         1       3  female  26.0      0      0   7.9250        S   Third   
+3         1       1  female  35.0      1      0  53.1000        S   First   
+4         0       3    male  35.0      0      0   8.0500        S   Third   
+5         0       3    male   NaN      0      0   8.4583        Q   Third   
+6         0       1    male  54.0      0      0  51.8625        S   First   
+7         0       3    male   2.0      3      1  21.0750        S   Third   
+8         1       3  female  27.0      0      2  11.1333        S   Third   
+9         1       2  female  14.0      1      0  30.0708        C  Second
+
+     who  adult_male deck  embark_town alive  alone  
+0    man        True  NaN  Southampton    no  False  
+1  woman       False    C    Cherbourg   yes  False  
+2  woman       False  NaN  Southampton   yes   True  
+3  woman       False    C  Southampton   yes  False  
+4    man        True  NaN  Southampton    no   True  
+5    man        True  NaN   Queenstown    no   True  
+6    man        True    E  Southampton    no   True  
+7  child       False  NaN  Southampton    no  False  
+8  woman       False  NaN  Southampton   yes  False  
+9  child       False  NaN    Cherbourg   yes  False
+</code></pre></div>
+
+<h2 id="section-2-data-exploration-and-preparation">Section 2. Data Exploration and Preparation<a class="headerlink" href="#section-2-data-exploration-and-preparation" title="Permanent link">&para;</a></h2>
+<h3 id="21-handle-missing-values-and-clean-data">2.1 Handle Missing Values and Clean Data<a class="headerlink" href="#21-handle-missing-values-and-clean-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># - Fill missing ages with median</span>
+<span class="n">median_age</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_age</span><span class="p">)</span>
+
+<span class="c1"># - Fill missing embark_town with mode</span>
+<span class="n">mode_embark</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;embark_town&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;embark_town&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;embark_town&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">mode_embark</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="22-feature-engineering">2.2 Feature Engineering<a class="headerlink" href="#22-feature-engineering" title="Permanent link">&para;</a></h3>
+<p>Create any new features that might be helpful for the model from the existing data. This is providing existing data in a more helpful, concise way for modeling.</p>
+<p>In this case, we want to add a calculated feature we'll call family_size.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create new feature</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sibsp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;parch&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Map categories to numeric values</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;embarked&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;alone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;alone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="section-3-feature-selection-and-justification">Section 3. Feature Selection and Justification<a class="headerlink" href="#section-3-feature-selection-and-justification" title="Permanent link">&para;</a></h2>
+<h3 id="31-choose-features-and-target">3.1 Choose features and target<a class="headerlink" href="#31-choose-features-and-target" title="Permanent link">&para;</a></h3>
+<p><strong>Target:</strong>
+- Survived (0 = did not survive, 1 = survived).<br>
+<strong>Feature Cases:</strong>
+1. <strong>Case 1: Single feature</strong> - <code>alone</code>
+    - Why: Being alone might affect survival; family or groups may have influenced who got rescued first.
+2. <strong>Case 2: Single feature</strong> - <code>age</code>
+    - Why: Age is historically important; children often had higher survival rates.
+3. <strong>Case 3: Two features</strong> - <code>age</code> + <code>family_size</code>
+    - Why: Combining age with family size may capture survival patterns better; families traveling together might have increased or decreased chances.</p>
+<h3 id="32-define-x-features-and-y-target">3.2 Define X (features) and y (target)<a class="headerlink" href="#32-define-x-features-and-y-target" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Assign input features to X a pandas DataFrame with 1 or more input features</li>
+<li>Assign target variable to y (as applicable) - a pandas Series with a single target feature</li>
+<li>Again - use comments to run a single case at a time</li>
+<li>The follow starts with only the statements needed for case 1. </li>
+<li>Double brackets [[ ]]  makes a 2D DataFrame</li>
+<li>Single brackets [ ]  make a 1D Series</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: Feature = alone</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Select the feature &#39;alone&#39; as input (2D DataFrame)</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;alone&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Select &#39;survived&#39; as the target (1D Series)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: Feature = age</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Select the feature &#39;age&#39; and drop rows with missing values</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Select matching &#39;survived&#39; values using the same indices</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">titanic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X2</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;survived&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: Features = age + family_size</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Select both &#39;age&#39; and &#39;family_size&#39;, drop rows with missing values</span>
+<span class="n">X3</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;family_size&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Select corresponding &#39;survived&#39; values</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="n">titanic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X3</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;survived&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Reflection 3:</strong> </p>
+<ol>
+<li>Why are these features selected?</li>
+<li><code>alone</code>: An indicator of whether the passenger had family.</li>
+<li><code>age</code>: Survival may depend on age (children and women may have survived more).</li>
+<li><code>family_size</code>: Captures whether traveling in a group influences survival.</li>
+<li>
+<p>Combining features (age + family_size) may uncover interactions that single features can’t capture.</p>
+</li>
+<li>
+<p>Which features are likely highly predictive?</p>
+</li>
+<li><code>alone</code> may be predictive because social/family structures mattered.</li>
+<li><code>age</code> is often predictive because children and women may have survived more.</li>
+<li><code>family_size</code> could affect survival if families stayed together or helped each other.</li>
+</ol>
+<h2 id="section-4-train-a-classification-model-decision-tree">Section 4. Train a Classification Model (Decision Tree) <br><a class="headerlink" href="#section-4-train-a-classification-model-decision-tree" title="Permanent link">&para;</a></h2>
+<p>Split the data, train decision tree models for three feature cases, evaluate performance, and visualize results.</p>
+<h3 id="41-split-the-data">4.1 Split the Data<a class="headerlink" href="#41-split-the-data" title="Permanent link">&para;</a></h3>
+<p>We’ll use StratifiedShuffleSplit to maintain the same proportion of survivors in training and test sets.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: Feature = alone</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">splitter1</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">train_idx1</span><span class="p">,</span> <span class="n">test_idx1</span> <span class="ow">in</span> <span class="n">splitter1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">):</span>
+    <span class="n">X1_train</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx1</span><span class="p">]</span>
+    <span class="n">X1_test</span>  <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx1</span><span class="p">]</span>
+    <span class="n">y1_train</span> <span class="o">=</span> <span class="n">y1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx1</span><span class="p">]</span>
+    <span class="n">y1_test</span>  <span class="o">=</span> <span class="n">y1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Case 1 - Alone:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X1_train</span><span class="p">),</span> <span class="s1">&#39;| Test size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X1_test</span><span class="p">))</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: Feature = age</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">splitter2</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">train_idx2</span><span class="p">,</span> <span class="n">test_idx2</span> <span class="ow">in</span> <span class="n">splitter2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+    <span class="n">X2_train</span> <span class="o">=</span> <span class="n">X2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx2</span><span class="p">]</span>
+    <span class="n">X2_test</span>  <span class="o">=</span> <span class="n">X2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx2</span><span class="p">]</span>
+    <span class="n">y2_train</span> <span class="o">=</span> <span class="n">y2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx2</span><span class="p">]</span>
+    <span class="n">y2_test</span>  <span class="o">=</span> <span class="n">y2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx2</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Case 2 - Age:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X2_train</span><span class="p">),</span> <span class="s1">&#39;| Test size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X2_test</span><span class="p">))</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: Features = age + family_size</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">splitter3</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">train_idx3</span><span class="p">,</span> <span class="n">test_idx3</span> <span class="ow">in</span> <span class="n">splitter3</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X3</span><span class="p">,</span> <span class="n">y3</span><span class="p">):</span>
+    <span class="n">X3_train</span> <span class="o">=</span> <span class="n">X3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx3</span><span class="p">]</span>
+    <span class="n">X3_test</span>  <span class="o">=</span> <span class="n">X3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx3</span><span class="p">]</span>
+    <span class="n">y3_train</span> <span class="o">=</span> <span class="n">y3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx3</span><span class="p">]</span>
+    <span class="n">y3_test</span>  <span class="o">=</span> <span class="n">y3</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx3</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Case 3 - Age + Family Size:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X3_train</span><span class="p">),</span> <span class="s1">&#39;| Test size:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X3_test</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Case 1 - Alone:
+Train size: 712 | Test size: 179
+Case 2 - Age:
+Train size: 712 | Test size: 179
+Case 3 - Age + Family Size:
+Train size: 712 | Test size: 179
+</code></pre></div>
+
+<h3 id="42-create-and-train-model-decision-tree">4.2 Create and Train Model (Decision Tree)<a class="headerlink" href="#42-create-and-train-model-decision-tree" title="Permanent link">&para;</a></h3>
+<p>Create and train a decision tree model with no random initializer argument.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># CASE 1: Decision Tree using alone</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">tree_model1</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">tree_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># CASE 2: Decision Tree using age</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">tree_model2</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">tree_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2_train</span><span class="p">,</span> <span class="n">y2_train</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># CASE 3: Decision Tree using age and family_size</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">tree_model3</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">tree_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X3_train</span><span class="p">,</span> <span class="n">y3_train</span><span class="p">)</span>
+</code></pre></div>
+<style>#sk-container-id-9 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-9 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-9 pre {
+  padding: 0;
+}
+
+#sk-container-id-9 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-9 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-9 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-9 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-9 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-9 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-9 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-9 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-9 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-9 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-9 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-9 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-9 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-9 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-9 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-9 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-9 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-9 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-9 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-9 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-9 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-9 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-9 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-9 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-9 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-9 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-9 div.sk-label label.sk-toggleable__label,
+#sk-container-id-9 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-9 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-9 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-9 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-9 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-9 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-9 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-9 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-9 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-9 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-9 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-9 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-9 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style>
+<body><div id="sk-container-id-9" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" checked><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>DecisionTreeClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.tree.DecisionTreeClassifier.html">?<span>Documentation for DecisionTreeClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('criterion',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">criterion&nbsp;</td>
+            <td class="value">&#x27;gini&#x27;</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('splitter',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">splitter&nbsp;</td>
+            <td class="value">&#x27;best&#x27;</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_depth',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_depth&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_samples_split',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_samples_split&nbsp;</td>
+            <td class="value">2</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_samples_leaf',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_samples_leaf&nbsp;</td>
+            <td class="value">1</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_weight_fraction_leaf',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_weight_fraction_leaf&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_features',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_features&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('random_state',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">random_state&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_leaf_nodes',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_leaf_nodes&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_impurity_decrease',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_impurity_decrease&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('class_weight',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">class_weight&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('ccp_alpha',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">ccp_alpha&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('monotonic_cst',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">monotonic_cst&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script></body>
+
+<h3 id="43-predict-and-evaluate-model-performance">4.3 Predict and Evaluate Model Performance<a class="headerlink" href="#43-predict-and-evaluate-model-performance" title="Permanent link">&para;</a></h3>
+<p>Evaluate model performance on training data.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: Predictions and Evaluation</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">y1_pred</span> <span class="o">=</span> <span class="n">tree_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Training Results - Case 1 (Alone):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y1_train</span><span class="p">,</span> <span class="n">y1_pred</span><span class="p">))</span>
+
+<span class="n">y1_test_pred</span> <span class="o">=</span> <span class="n">tree_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Test Results - Case 1 (Alone):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span> <span class="n">y1_test_pred</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Decision Tree Training Results - Case 1 (Alone):
+              precision    recall  f1-score   support
+
+           0       0.69      0.69      0.69       439
+           1       0.50      0.51      0.51       273
+
+    accuracy                           0.62       712
+   macro avg       0.60      0.60      0.60       712
+weighted avg       0.62      0.62      0.62       712
+
+Decision Tree Test Results - Case 1 (Alone):
+              precision    recall  f1-score   support
+
+           0       0.71      0.65      0.68       110
+           1       0.51      0.58      0.54        69
+
+    accuracy                           0.63       179
+   macro avg       0.61      0.62      0.61       179
+weighted avg       0.64      0.63      0.63       179
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: Predictions and Evaluation</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">y2_pred</span> <span class="o">=</span> <span class="n">tree_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Training Results - Case 2 (Age):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y2_train</span><span class="p">,</span> <span class="n">y2_pred</span><span class="p">))</span>
+
+<span class="n">y2_test_pred</span> <span class="o">=</span> <span class="n">tree_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Test Results - Case 2 (Age):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y2_test</span><span class="p">,</span> <span class="n">y2_test_pred</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Decision Tree Training Results - Case 2 (Age):
+              precision    recall  f1-score   support
+
+           0       0.68      0.92      0.78       439
+           1       0.69      0.29      0.41       273
+
+    accuracy                           0.68       712
+   macro avg       0.68      0.61      0.60       712
+weighted avg       0.68      0.68      0.64       712
+
+Decision Tree Test Results - Case 2 (Age):
+              precision    recall  f1-score   support
+
+           0       0.63      0.89      0.74       110
+           1       0.50      0.17      0.26        69
+
+    accuracy                           0.61       179
+   macro avg       0.57      0.53      0.50       179
+weighted avg       0.58      0.61      0.55       179
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: Predictions and Evaluation</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">y3_pred</span> <span class="o">=</span> <span class="n">tree_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Training Results - Case 3 (Age + Family Size):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y3_train</span><span class="p">,</span> <span class="n">y3_pred</span><span class="p">))</span>
+
+<span class="n">y3_test_pred</span> <span class="o">=</span> <span class="n">tree_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Test Results - Case 3 (Age + Family Size):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_test_pred</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Decision Tree Training Results - Case 3 (Age + Family Size):
+              precision    recall  f1-score   support
+
+           0       0.77      0.90      0.83       439
+           1       0.77      0.56      0.65       273
+
+    accuracy                           0.77       712
+   macro avg       0.77      0.73      0.74       712
+weighted avg       0.77      0.77      0.76       712
+
+Decision Tree Test Results - Case 3 (Age + Family Size):
+              precision    recall  f1-score   support
+
+           0       0.64      0.75      0.69       110
+           1       0.45      0.33      0.38        69
+
+    accuracy                           0.59       179
+   macro avg       0.55      0.54      0.54       179
+weighted avg       0.57      0.59      0.57       179
+</code></pre></div>
+
+<h3 id="44-report-confusion-matrix-as-a-heatmap">4.4 Report Confusion Matrix (as a heatmap)<a class="headerlink" href="#44-report-confusion-matrix-as-a-heatmap" title="Permanent link">&para;</a></h3>
+<p>Plot a confusion matrix as a heatmap for all three cases.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">cm1</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span> <span class="n">y1_test_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm1</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix - Case 1: Alone&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">cm2</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y2_test</span><span class="p">,</span> <span class="n">y2_test_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm2</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix - Case 2: Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">cm3</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_test_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm3</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix - Case 3: Age + Family Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml03_files/output_23_0.png" /></p>
+<p><img alt="png" src="../ml03_files/output_23_1.png" /></p>
+<p><img alt="png" src="../ml03_files/output_23_2.png" /></p>
+<h3 id="45-report-decision-tree-plot">4.5 Report Decision Tree Plot<a class="headerlink" href="#45-report-decision-tree-plot" title="Permanent link">&para;</a></h3>
+<p>Plot the decision tree model for each case. We give the plotter the names of the features and the names of the categories for the target. </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: Alone</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_model1</span><span class="p">,</span>
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">],</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Tree - Case 1: Alone&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;tree_case1_alone.png&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: Age</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_model2</span><span class="p">,</span>
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X2</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">],</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Tree - Case 2: Age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;tree_case2_age.png&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: Age + Family Size</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_model3</span><span class="p">,</span>
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X3</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">],</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision Tree - Case 3: Age + Family Size&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;tree_case3_age_family.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../ml03_files/output_25_0.png" /></p>
+<p><img alt="png" src="../ml03_files/output_25_1.png" /></p>
+<p><img alt="png" src="../ml03_files/output_25_2.png" /></p>
+<p><strong>Reflection 4:</strong> </p>
+<ol>
+<li>How well did the different cases perform?</li>
+<li>Case 1 (Alone) got around 63% test accuracy and picked up some survivors, but it was pretty limited. Case 2 (Age) had about the same accuracy, but the model really struggled to catch survivors, so age alone isn’t that strong of a predictor.</li>
+<li>Are there any surprising results?<ul>
+<li>Adding family_size in Case 3 boosted training accuracy a lot, but it didn’t really help test accuracy. The model still had trouble predicting survivors, which reminds me how tricky imbalanced classes can be.</li>
+</ul>
+</li>
+<li>Which inputs worked better? <ul>
+<li>The ‘alone’ feature (Case 1) stayed consistent between training and test results.</li>
+<li>Using age + family_size (Case 3) didn’t really help the Decision Tree on the test set. Recall for survivors was even lower than Case 1, so sometimes adding features can actually overfit the model or make it less generalizable.</li>
+</ul>
+</li>
+</ol>
+<h2 id="section-5-compare-alternative-models-svc-nn">Section 5. Compare Alternative Models (SVC, NN) <br><a class="headerlink" href="#section-5-compare-alternative-models-svc-nn" title="Permanent link">&para;</a></h2>
+<p>Train and evaluate Support Vector Machine (SVC) and Neural Network (MLP) models on the Titanic dataset, visualize support vectors, and explore decision boundaries.</p>
+<p>SVC Kernel: Common Types</p>
+<ul>
+<li>RBF (Radial Basis Function) – Most commonly used; handles non-linear data well (default)</li>
+<li>Linear – Best for linearly separable data (straight line separation)</li>
+<li>Polynomial – Useful when the data follows a curved pattern</li>
+<li>Sigmoid – Similar to a neural network activation function; less common</li>
+</ul>
+<h3 id="51-train-and-evaluate-model-svc">5.1 Train and Evaluate Model (SVC)<a class="headerlink" href="#51-train-and-evaluate-model-svc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: SVC using &#39;alone&#39;</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">svc_model1</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>  <span class="c1"># default RBF kernel</span>
+<span class="n">svc_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">)</span>
+
+<span class="n">y1_svc_pred</span> <span class="o">=</span> <span class="n">svc_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for SVC on test data (Case 1 - alone):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span> <span class="n">y1_svc_pred</span><span class="p">))</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: SVC using &#39;age&#39;</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">svc_model2</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svc_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2_train</span><span class="p">,</span> <span class="n">y2_train</span><span class="p">)</span>
+
+<span class="n">y2_svc_pred</span> <span class="o">=</span> <span class="n">svc_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for SVC on test data (Case 2 - age):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y2_test</span><span class="p">,</span> <span class="n">y2_svc_pred</span><span class="p">))</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: SVC using &#39;age + family_size&#39;</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">svc_model3</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svc_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X3_train</span><span class="p">,</span> <span class="n">y3_train</span><span class="p">)</span>
+
+<span class="n">y3_svc_pred</span> <span class="o">=</span> <span class="n">svc_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for SVC on test data (Case 3 - age + family_size):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_svc_pred</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Results for SVC on test data (Case 1 - alone):
+              precision    recall  f1-score   support
+
+           0       0.71      0.65      0.68       110
+           1       0.51      0.58      0.54        69
+
+    accuracy                           0.63       179
+   macro avg       0.61      0.62      0.61       179
+weighted avg       0.64      0.63      0.63       179
+
+Results for SVC on test data (Case 2 - age):
+              precision    recall  f1-score   support
+
+           0       0.63      0.98      0.77       110
+           1       0.71      0.07      0.13        69
+
+    accuracy                           0.63       179
+   macro avg       0.67      0.53      0.45       179
+weighted avg       0.66      0.63      0.52       179
+
+Results for SVC on test data (Case 3 - age + family_size):
+              precision    recall  f1-score   support
+
+           0       0.63      0.98      0.77       110
+           1       0.71      0.07      0.13        69
+
+    accuracy                           0.63       179
+   macro avg       0.67      0.53      0.45       179
+weighted avg       0.66      0.63      0.52       179
+</code></pre></div>
+
+<h3 id="52-visualize-support-vectors-1d-case-1-and-2d-case-3">5.2 Visualize Support Vectors (1D Case 1 and 2D Case 3)<a class="headerlink" href="#52-visualize-support-vectors-1d-case-1-and-2d-case-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: Feature = &#39;alone&#39;</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Split test data into survived and not survived</span>
+<span class="n">survived_alone</span> <span class="o">=</span> <span class="n">X1_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y1_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;alone&#39;</span><span class="p">]</span>
+<span class="n">not_survived_alone</span> <span class="o">=</span> <span class="n">X1_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y1_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alone&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">survived_alone</span><span class="p">,</span> <span class="n">y1_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y1_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">not_survived_alone</span><span class="p">,</span> <span class="n">y1_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y1_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overlay support vectors</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">svc_model1</span><span class="p">,</span> <span class="s1">&#39;support_vectors_&#39;</span><span class="p">):</span>
+    <span class="n">support_x</span> <span class="o">=</span> <span class="n">svc_model1</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">support_x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">support_x</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Support Vectors&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Alone&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Survived (0 or 1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Support Vectors - SVC (Case 1: Alone)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml03_files/output_31_0.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: Two Inputs (age + family_size)</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">survived</span> <span class="o">=</span> <span class="n">X3_test</span><span class="p">[</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">not_survived</span> <span class="o">=</span> <span class="n">X3_test</span><span class="p">[</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">survived</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">survived</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">not_survived</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">not_survived</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overlay support vectors</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">svc_model3</span><span class="p">,</span> <span class="s1">&#39;support_vectors_&#39;</span><span class="p">):</span>
+    <span class="n">support_vectors</span> <span class="o">=</span> <span class="n">svc_model3</span><span class="o">.</span><span class="n">support_vectors_</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">support_vectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">support_vectors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Support Vectors&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Family Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Support Vectors - SVC (Case 3: Age + Family Size)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml03_files/output_32_0.png" /></p>
+<h3 id="53-train-and-evaluate-model-neural-network-on-case-3">5.3 Train and Evaluate Model (Neural Network on Case 3)<a class="headerlink" href="#53-train-and-evaluate-model-neural-network-on-case-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># - Create and train the neural network for Case 3</span>
+<span class="n">nn_model3</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span>
+    <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+<span class="n">nn_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X3_train</span><span class="p">,</span> <span class="n">y3_train</span><span class="p">)</span>
+
+<span class="c1"># - Predict on the test set for Case 3</span>
+<span class="n">y3_nn_pred</span> <span class="o">=</span> <span class="n">nn_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_test</span><span class="p">)</span>
+
+<span class="c1"># - Print classification results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for Neural Network on test data (Case 3 - age + family_size):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_nn_pred</span><span class="p">))</span>
+
+<span class="c1"># - Generate confusion matrix and display as heatmap</span>
+<span class="n">cm_nn3</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_nn_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm_nn3</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix - Neural Network (Case 3)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Results for Neural Network on test data (Case 3 - age + family_size):
+              precision    recall  f1-score   support
+
+           0       0.67      0.90      0.77       110
+           1       0.65      0.29      0.40        69
+
+    accuracy                           0.66       179
+   macro avg       0.66      0.59      0.58       179
+weighted avg       0.66      0.66      0.63       179
+</code></pre></div>
+
+<p><img alt="png" src="../ml03_files/output_34_1.png" /></p>
+<h3 id="54-visualize-neural-network-on-case-3">5.4 Visualize (Neural Network on Case 3)<a class="headerlink" href="#54-visualize-neural-network-on-case-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get the range of our two features - using padding to enhance appearance</span>
+<span class="n">padding</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X3</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span> <span class="n">X3</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">padding</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X3</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span> <span class="n">X3</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">padding</span>
+
+<span class="c1"># Create meshgrid</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
+
+<span class="c1"># Predict on all points in the grid</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">nn_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot decision surface</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">cmap_background</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightyellow&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_background</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Overlay actual test data points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X3_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">][</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">X3_test</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">][</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X3_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">][</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">X3_test</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">][</span><span class="n">y3_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Family Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neural Network Decision Surface - Case 3&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nx">c</span><span class="p">:</span><span class="err">\</span><span class="nx">Repos</span><span class="err">\</span><span class="nx">applied</span><span class="o">-</span><span class="nx">ml</span><span class="o">-</span><span class="nx">beaderstadt</span><span class="err">\</span><span class="p">.</span><span class="nx">venv</span><span class="err">\</span><span class="nx">Lib</span><span class="err">\</span><span class="nx">site</span><span class="o">-</span><span class="nx">packages</span><span class="err">\</span><span class="nx">sklearn</span><span class="err">\</span><span class="nx">utils</span><span class="err">\</span><span class="nx">validation</span><span class="p">.</span><span class="nx">py</span><span class="p">:</span><span class="mi">2749</span><span class="p">:</span><span class="w"> </span><span class="nx">UserWarning</span><span class="p">:</span><span class="w"> </span><span class="nx">X</span><span class="w"> </span><span class="nx">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">have</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">feature</span><span class="w"> </span><span class="nx">names</span><span class="p">,</span><span class="w"> </span><span class="nx">but</span><span class="w"> </span><span class="nx">MLPClassifier</span><span class="w"> </span><span class="nx">was</span><span class="w"> </span><span class="nx">fitted</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">feature</span><span class="w"> </span><span class="nx">names</span>
+<span class="w">  </span><span class="nx">warnings</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span>
+</code></pre></div>
+
+<p><img alt="png" src="../ml03_files/output_36_1.png" /></p>
+<p><strong>Reflection 5:</strong> </p>
+<ol>
+<li>How well did each of these new models/cases perform?</li>
+<li>The SVM models were about as accurate as the Decision Trees but had a really hard time catching survivors, especially in Case 2 and Case 3. The Neural Network on Case 3 did a bit better overall and could pick up some more complex patterns with the two features. Still, recall for survivors wasn’t perfect, there’s still room to improve with scaling or more features.</li>
+<li>Are there any surprising results or insights?<ul>
+<li>Adding family_size helped the Neural Network balance recall between survivors and non-survivors, while SVM and Decision Trees didn’t get much from it. It’s cool to see that models that can handle non-linear relationships squeeze out more predictive power even with just a couple features.</li>
+</ul>
+</li>
+<li>Why might one model outperform the others?<ul>
+<li>The Neural Network probably did better because it can learn non-linear interactions between age and family_size. SVM can do non-linear boundaries too but struggled with class imbalance, and Decision Trees overfitted. The NN setup let it generalize a bit better while keeping recall more balanced across survivors and non-survivors.</li>
+</ul>
+</li>
+</ol>
+<h2 id="section-6-final-thoughts-insights">Section 6. Final Thoughts &amp; Insights<a class="headerlink" href="#section-6-final-thoughts-insights" title="Permanent link">&para;</a></h2>
+<h3 id="model-comparison-summary">Model Comparison Summary<a class="headerlink" href="#model-comparison-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model Type</th>
+<th>Case</th>
+<th>Features Used</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1-Score</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision Tree</td>
+<td>Case 1</td>
+<td>alone</td>
+<td>63%</td>
+<td>51%</td>
+<td>58%</td>
+<td>54%</td>
+<td>Tie / Decision Tree &amp; SVM</td>
+</tr>
+<tr>
+<td></td>
+<td>Case 2</td>
+<td>age</td>
+<td>61%</td>
+<td>50%</td>
+<td>17%</td>
+<td>26%</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>Case 3</td>
+<td>age + family_size</td>
+<td>59%</td>
+<td>45%</td>
+<td>33%</td>
+<td>38%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>-------------------</td>
+<td>------</td>
+<td>---------------</td>
+<td>----------</td>
+<td>-----------</td>
+<td>--------</td>
+<td>-----------</td>
+<td>-------</td>
+</tr>
+<tr>
+<td>SVM (RBF Kernel)</td>
+<td>Case 1</td>
+<td>alone</td>
+<td>63%</td>
+<td>51%</td>
+<td>58%</td>
+<td>54%</td>
+<td>Tie / Decision Tree &amp; SVM</td>
+</tr>
+<tr>
+<td></td>
+<td>Case 2</td>
+<td>age</td>
+<td>63%</td>
+<td>71%</td>
+<td>7%</td>
+<td>13%</td>
+<td>Best model for Case 2</td>
+</tr>
+<tr>
+<td></td>
+<td>Case 3</td>
+<td>age + family_size</td>
+<td>63%</td>
+<td>71%</td>
+<td>7%</td>
+<td>13%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>-------------------</td>
+<td>------</td>
+<td>---------------</td>
+<td>----------</td>
+<td>-----------</td>
+<td>--------</td>
+<td>-----------</td>
+<td>-------</td>
+</tr>
+<tr>
+<td>Neural Network (MLP)</td>
+<td>Case 3</td>
+<td>age + family_size</td>
+<td>66%</td>
+<td>65%</td>
+<td>29%</td>
+<td>40%</td>
+<td>Best model for Case 3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="challenges-and-next-steps"><strong>Challenges and Next Steps</strong><a class="headerlink" href="#challenges-and-next-steps" title="Permanent link">&para;</a></h3>
+<p><strong>What I Learned / Challenges:</strong><br />
+- Adding features like age + family_size can boost training accuracy, but it doesn’t always help the test set, sometimes the model just overfits. 
+- The SVM results for Case 3 looked a lot like Case 2, probably because features weren’t scaled. Family size had a smaller range, so it didn’t make much difference.<br />
+- The Neural Network helped a bit with balancing recall for survivors, but it’s still not perfect. Feature scaling or adding more inputs might help.</p>
+<p><strong>Next Steps / Ideas to Try:</strong><br />
+- Experiment with other features like <code>pclass</code>, <code>sex</code>, or <code>embarked</code> to see if models improve.<br />
+- Scale or normalize numerical features, especially for SVM and Neural Network models.    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
