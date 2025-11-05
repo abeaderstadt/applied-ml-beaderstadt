@@ -1,8 +1,8 @@
 # Project 3: Beaderstadt Titanic Classification
-> Building and evaluating classifiers to predict survival on the Titanic dataset.
+> Predicting passenger survival on the Titanic using multiple machine learning models.
 
 ## Project Overview
-In this project, I extend my previous exploration of the Titanic dataset to build and evaluate machine learning classifiers. The goal is to predict passenger survival using three models: Decision Tree, Support Vector Machine (SVM), and Neural Network. I explore multiple feature sets, train models, evaluate performance, and visualize the results to understand which factors best predict survival.
+In this project, I explore the Titanic dataset to see which factors best predict survival. I train and evaluate three types of classifiers. Decision Tree, Support Vector Machine (SVM), and Neural Network using different feature sets. The goal is to understand how each model performs, visualize their decision-making, and uncover patterns that help predict who survived.
 
 ---
 
@@ -46,18 +46,14 @@ In this project, I extend my previous exploration of the Titanic dataset to buil
 - Target variable: `survived`.
 
 **Reasoning:**  
-- Features are historically relevant to survival predictions.
-- Multiple feature sets allow comparison of model performance and insight into which factors are most predictive.
+- Using different feature combinations lets us compare performance and see which factors are most predictive.
 
 ---
 
 ## 4. Data Splitting and Stratification
-- Split data into training and test sets using stratified sampling to preserve class balance.
-
-**Analysis:**
-- Stratified sampling ensures the training and test sets closely reflect the original class distribution.
-- Improves model reliability by reducing bias and variance in predictions.
-
+- Split into training and test sets using stratified sampling to keep class balance.
+- Ensures training/test sets reflect the original distribution of survived vs. not-survived passengers.
+- 
 ---
 
 ## 5. Model Training and Evaluation
@@ -84,11 +80,21 @@ In this project, I extend my previous exploration of the Titanic dataset to buil
 ---
 
 ## 6. Final Thoughts & Insights
-- Feature selection matters: even a simple feature like `alone` can provide predictive value.
-- Multiple models reveal different strengths and weaknesses.
-- Stratified sampling ensures reliable evaluation of model performance.
-- Neural Networks perform well with two continuous features, capturing nuanced relationships.
-- Future exploration could include hyperparameter tuning, additional features, or ensemble methods.
+
+### Model Comparison Summary
+
+| Case | Features | Decision Tree | SVC (RBF) | Neural Network (MLP) | Best Model |
+| ---- | -------- | ------------- | ---------- | ------------------- | ---------- |
+| 1 | Alone | Accuracy: 63%<br>Precision: 51%<br>Recall: 58%<br>F1-score: 54% | Accuracy: 63%<br>Precision: 51%<br>Recall: 58%<br>F1-score: 54% | N/A | Tie / Decision Tree & SVC |
+| 2 | Age | Accuracy: 61%<br>Precision: 50%<br>Recall: 17%<br>F1-score: 26% | Accuracy: 63%<br>Precision: 71%<br>Recall: 7%<br>F1-score: 13% | N/A | SVC |
+| 3 | Age + Family Size | Accuracy: 59%<br>Precision: 45%<br>Recall: 33%<br>F1-score: 38% | Accuracy: 63%<br>Precision: 71%<br>Recall: 7%<br>F1-score: 13% | Accuracy: 66%<br>Precision: 65%<br>Recall: 29%<br>F1-score: 40% | Neural Network |
+
+
+- Even simple features like alone can provide predictive power.
+- Adding family_size improved Neural Network recall, but SVC and Decision Tree saw limited benefit.
+- Neural Networks perform best on two-feature sets, capturing subtle patterns in survival.
+- Stratified sampling helps ensure reliable evaluation.
+- Future work: explore additional features.
 
 ---
 
