@@ -1072,19 +1072,19 @@ plt.show()
 
 
     
-![png](output_23_0.png)
+![png](ml03_files/output_23_0.png)
     
 
 
 
     
-![png](output_23_1.png)
+![png](ml03_files/output_23_1.png)
     
 
 
 
     
-![png](output_23_2.png)
+![png](ml03_files/output_23_2.png)
     
 
 
@@ -1135,19 +1135,19 @@ fig.savefig("tree_case3_age_family.png")
 
 
     
-![png](output_25_0.png)
+![png](ml03_files/output_25_0.png)
     
 
 
 
     
-![png](output_25_1.png)
+![png](ml03_files/output_25_1.png)
     
 
 
 
     
-![png](output_25_2.png)
+![png](ml03_files/output_25_2.png)
     
 
 
@@ -1273,7 +1273,7 @@ plt.show()
 
 
     
-![png](output_31_0.png)
+![png](ml03_files/output_31_0.png)
     
 
 
@@ -1305,7 +1305,7 @@ plt.show()
 
 
     
-![png](output_32_0.png)
+![png](ml03_files/output_32_0.png)
     
 
 
@@ -1352,7 +1352,7 @@ plt.show()
 
 
     
-![png](output_34_1.png)
+![png](ml03_files/output_34_1.png)
     
 
 
@@ -1401,7 +1401,7 @@ plt.show()
 
 
     
-![png](output_36_1.png)
+![png](ml03_files/output_36_1.png)
     
 
 
