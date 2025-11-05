@@ -83,12 +83,17 @@ In this project, I explore the Titanic dataset to see which factors best predict
 
 ### Model Comparison Summary
 
-| Case | Features | Decision Tree | SVC (RBF) | Neural Network (MLP) | Best Model |
-| ---- | -------- | ------------- | ---------- | ------------------- | ---------- |
-| 1 | Alone | Accuracy: 63%<br>Precision: 51%<br>Recall: 58%<br>F1-score: 54% | Accuracy: 63%<br>Precision: 51%<br>Recall: 58%<br>F1-score: 54% | N/A | Tie / Decision Tree & SVC |
-| 2 | Age | Accuracy: 61%<br>Precision: 50%<br>Recall: 17%<br>F1-score: 26% | Accuracy: 63%<br>Precision: 71%<br>Recall: 7%<br>F1-score: 13% | N/A | SVC |
-| 3 | Age + Family Size | Accuracy: 59%<br>Precision: 45%<br>Recall: 33%<br>F1-score: 38% | Accuracy: 63%<br>Precision: 71%<br>Recall: 7%<br>F1-score: 13% | Accuracy: 66%<br>Precision: 65%<br>Recall: 29%<br>F1-score: 40% | Neural Network |
-
+| Model Type | Case | Features Used | Accuracy | Precision | Recall | F1-Score | Notes |
+|------------|------|---------------|----------|-----------|--------|-----------|-------|
+| Decision Tree | Case 1 | alone | 63% | 51% | 58% | 54% | Tie / Decision Tree & SVM |
+|                   | Case 2 | age | 61% | 50% | 17% | 26% | - |
+|                   | Case 3 | age + family_size | 59% | 45% | 33% | 38% | - |
+|-------------------|------|---------------|----------|-----------|--------|-----------|-------|
+| SVM (RBF Kernel)| Case 1 | alone | 63% | 51% | 58% | 54% | Tie / Decision Tree & SVM |
+|                    | Case 2 | age | 63% | 71% | 7% | 13% | Best model for Case 2 |
+|                    | Case 3 | age + family_size | 63% | 71% | 7% | 13% | - |
+|-------------------|------|---------------|----------|-----------|--------|-----------|-------|
+| Neural Network (MLP) | Case 3 | age + family_size | 66% | 65% | 29% | 40% | Best model for Case 3 |
 
 - Even simple features like alone can provide predictive power.
 - Adding family_size improved Neural Network recall, but SVC and Decision Tree saw limited benefit.
