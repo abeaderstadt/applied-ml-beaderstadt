@@ -140,6 +140,7 @@ Make sure you have current doc dependencies, then build your docs, fix any error
 ```shell
 uv run mkdocs build --strict
 uv run mkdocs serve
+mkdocs gh-deploy # push your updated site
 ```
 
 - After running the serve command, the local URL of the docs will be provided. To open the site, press **CTRL and click** the provided link (at the same time) to view the documentation. On a Mac, use **CMD and click**.
