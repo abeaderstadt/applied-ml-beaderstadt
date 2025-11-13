@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Predicting California housing prices using linear regression and data exploration">
+      
+      
+        <meta name="author" content="Alissa Beaderstadt">
+      
+      
+        <link rel="canonical" href="https://abeaderstadt.github.io/beaderstadt-ml-template/project04/EXAMPLE_ANALYSIS/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Analysis - Beaderstadt Applied ML Projects</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-4-predicting-titanic-fare-using-regression" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-header__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beaderstadt Applied ML Projects
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-nav__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Beaderstadt Applied ML Projects
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 01
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Project 01
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 02
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Project 02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 03
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project 03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project03/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 04
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Project 04
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-import-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Import the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1. Import the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-load-the-titanic-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Load the Titanic Dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-data-exploration-and-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Data Exploration and Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Data Exploration and Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-handle-missing-values-and-clean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Handle Missing Values and Clean Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-choose-features-and-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Choose features and target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-train-a-regression-model-linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Train a Regression Model (Linear Regression)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Train a Regression Model (Linear Regression)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-train-and-evaluate-linear-regression-models-all-4-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Train and Evaluate Linear Regression Models (all 4 cases)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-report-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Report Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-compare-alternative-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Compare Alternative Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Compare Alternative Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-ridge-regression-l2-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Ridge Regression (L2 penalty)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-elastic-net-l1-l2-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Elastic Net (L1 + L2 combined)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-polynomial-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Polynomial Regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-visualize-polynomial-cubic-fit-for-1-input-feature-age" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Visualize Polynomial Cubic Fit (for 1 input feature - Age)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-compare-all-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Compare All Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-visualize-higher-order-polynomial-for-the-same-1-input-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Visualize Higher Order Polynomial (for the same 1 input case)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-final-thoughts-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Final Thoughts &amp; Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Final Thoughts &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-summarize-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Summarize Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-performance-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Performance Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-discuss-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Discuss Challenges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-optional-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Optional Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-import-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Import the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 1. Import the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-load-the-titanic-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Load the Titanic Dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-data-exploration-and-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Data Exploration and Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Data Exploration and Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-handle-missing-values-and-clean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Handle Missing Values and Clean Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-choose-features-and-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Choose features and target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-train-a-regression-model-linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Train a Regression Model (Linear Regression)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Train a Regression Model (Linear Regression)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-train-and-evaluate-linear-regression-models-all-4-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Train and Evaluate Linear Regression Models (all 4 cases)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-report-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Report Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-compare-alternative-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Compare Alternative Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Compare Alternative Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-ridge-regression-l2-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Ridge Regression (L2 penalty)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-elastic-net-l1-l2-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Elastic Net (L1 + L2 combined)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-polynomial-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Polynomial Regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-visualize-polynomial-cubic-fit-for-1-input-feature-age" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Visualize Polynomial Cubic Fit (for 1 input feature - Age)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-compare-all-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Compare All Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-visualize-higher-order-polynomial-for-the-same-1-input-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Visualize Higher Order Polynomial (for the same 1 input case)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-final-thoughts-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Final Thoughts &amp; Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Final Thoughts &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-summarize-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Summarize Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-performance-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Performance Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-discuss-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Discuss Challenges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-optional-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Optional Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="project-4-predicting-titanic-fare-using-regression">Project 4: Predicting Titanic Fare Using Regression<a class="headerlink" href="#project-4-predicting-titanic-fare-using-regression" title="Permanent link">&para;</a></h1>
+<p><strong>Author:</strong> Alissa Beaderstadt<br>
+<strong>Date:</strong> November 10, 2025<br></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this project, we dig into what drives Titanic ticket prices. Using features like age, sex, class, and family size, we test a bunch of regression models to see which ones capture fare patterns best and figure out which factors actually matter. Along the way, we’ll spot trends, see where models struggle, and get a better feel for what really influences the price of a ticket.</p>
+<h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
+<p>Import the necessary Python libraries for this notebook.  </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Data manipulation and visualization</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="c1"># Machine learning</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">ElasticNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Set plotting style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="section-1-import-the-data">Section 1. Import the Data<a class="headerlink" href="#section-1-import-the-data" title="Permanent link">&para;</a></h2>
+<h3 id="11-load-the-titanic-dataset">1.1 Load the Titanic Dataset<a class="headerlink" href="#11-load-the-titanic-dataset" title="Permanent link">&para;</a></h3>
+<p>The Titanic dataset is built into <code>Seaborn</code>, so we can easily load it without needing to import an external file. We check its shape and info to understand the columns, data types, and any missing values. The first few rows give a quick glance at what the dataset looks like.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load Titanic dataset</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+
+<span class="c1"># Inspect the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">titanic</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">titanic</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="mi">891</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span>
+<span class="p">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">pandas</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">frame</span><span class="p">.</span><span class="nx">DataFrame</span><span class="err">&#39;</span><span class="p">&gt;</span>
+<span class="nx">RangeIndex</span><span class="p">:</span><span class="w"> </span><span class="mi">891</span><span class="w"> </span><span class="nx">entries</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mi">890</span>
+<span class="nx">Data</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="p">(</span><span class="nx">total</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="nx">columns</span><span class="p">):</span>
+<span class="w"> </span><span class="err">#</span><span class="w">   </span><span class="nx">Column</span><span class="w">       </span><span class="nx">Non</span><span class="o">-</span><span class="nx">Null</span><span class="w"> </span><span class="nx">Count</span><span class="w">  </span><span class="nx">Dtype</span><span class="w">   </span>
+<span class="o">---</span><span class="w">  </span><span class="o">------</span><span class="w">       </span><span class="o">--------------</span><span class="w">  </span><span class="o">-----</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">0</span><span class="w">   </span><span class="nx">survived</span><span class="w">     </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">int64</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="nx">pclass</span><span class="w">       </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">int64</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">2</span><span class="w">   </span><span class="nx">sex</span><span class="w">          </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">object</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">3</span><span class="w">   </span><span class="nx">age</span><span class="w">          </span><span class="mi">714</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">float64</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">4</span><span class="w">   </span><span class="nx">sibsp</span><span class="w">        </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">int64</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">5</span><span class="w">   </span><span class="nx">parch</span><span class="w">        </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">int64</span><span class="w">   </span>
+<span class="w"> </span><span class="mi">6</span><span class="w">   </span><span class="nx">fare</span><span class="w">         </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">float64</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">7</span><span class="w">   </span><span class="nx">embarked</span><span class="w">     </span><span class="mi">889</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">object</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">8</span><span class="w">   </span><span class="kd">class</span><span class="w">        </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">category</span>
+<span class="w"> </span><span class="mi">9</span><span class="w">   </span><span class="nx">who</span><span class="w">          </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">object</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">10</span><span class="w">  </span><span class="nx">adult_male</span><span class="w">   </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="kt">bool</span><span class="w">    </span>
+<span class="w"> </span><span class="mi">11</span><span class="w">  </span><span class="nx">deck</span><span class="w">         </span><span class="mi">203</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">category</span>
+<span class="w"> </span><span class="mi">12</span><span class="w">  </span><span class="nx">embark_town</span><span class="w">  </span><span class="mi">889</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">object</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">13</span><span class="w">  </span><span class="nx">alive</span><span class="w">        </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="nx">object</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">14</span><span class="w">  </span><span class="nx">alone</span><span class="w">        </span><span class="mi">891</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">    </span><span class="kt">bool</span><span class="w">    </span>
+<span class="nx">dtypes</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nx">category</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nx">float64</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nx">int64</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="nx">object</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nx">memory</span><span class="w"> </span><span class="nx">usage</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">80.7</span><span class="o">+</span><span class="w"> </span><span class="nx">KB</span>
+<span class="nx">None</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="section-2-data-exploration-and-preparation">Section 2. Data Exploration and Preparation<a class="headerlink" href="#section-2-data-exploration-and-preparation" title="Permanent link">&para;</a></h2>
+<h3 id="21-handle-missing-values-and-clean-data">2.1 Handle Missing Values and Clean Data<a class="headerlink" href="#21-handle-missing-values-and-clean-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Impute missing age values with median</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Drop rows with missing fare</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">titanic</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">])</span>
+
+<span class="c1"># Create a new numeric feature: family_size</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;family_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sibsp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;parch&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Convert categorical variables</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;embarked&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;deck&#39;</span><span class="p">,</span> <span class="s1">&#39;embark_town&#39;</span><span class="p">,</span> <span class="s1">&#39;alive&#39;</span><span class="p">,</span> <span class="s1">&#39;adult_male&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Quick stats and visualization</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">titanic</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Visualize fare distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fare Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="w">         </span><span class="n">survived</span><span class="w">      </span><span class="n">pclass</span><span class="w">         </span><span class="n">sex</span><span class="w">         </span><span class="n">age</span><span class="w">       </span><span class="n">sibsp</span><span class="w">       </span><span class="n">parch</span><span class="w">  </span><span class="err">\</span>
+<span class="nf">count</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">   </span>
+<span class="n">mean</span><span class="w">     </span><span class="mf">0.383838</span><span class="w">    </span><span class="mf">2.308642</span><span class="w">    </span><span class="mf">0.352413</span><span class="w">   </span><span class="mf">29.361582</span><span class="w">    </span><span class="mf">0.523008</span><span class="w">    </span><span class="mf">0.381594</span><span class="w">   </span>
+<span class="n">std</span><span class="w">      </span><span class="mf">0.486592</span><span class="w">    </span><span class="mf">0.836071</span><span class="w">    </span><span class="mf">0.477990</span><span class="w">   </span><span class="mf">13.019697</span><span class="w">    </span><span class="mf">1.102743</span><span class="w">    </span><span class="mf">0.806057</span><span class="w">   </span>
+<span class="nf">min</span><span class="w">      </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">1.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">0.420000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span>
+<span class="mi">25</span><span class="o">%</span><span class="w">      </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">2.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span><span class="mf">22.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span>
+<span class="mi">50</span><span class="o">%</span><span class="w">      </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">3.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span><span class="mf">28.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span>
+<span class="mi">75</span><span class="o">%</span><span class="w">      </span><span class="mf">1.000000</span><span class="w">    </span><span class="mf">3.000000</span><span class="w">    </span><span class="mf">1.000000</span><span class="w">   </span><span class="mf">35.000000</span><span class="w">    </span><span class="mf">1.000000</span><span class="w">    </span><span class="mf">0.000000</span><span class="w">   </span>
+<span class="nf">max</span><span class="w">      </span><span class="mf">1.000000</span><span class="w">    </span><span class="mf">3.000000</span><span class="w">    </span><span class="mf">1.000000</span><span class="w">   </span><span class="mf">80.000000</span><span class="w">    </span><span class="mf">8.000000</span><span class="w">    </span><span class="mf">6.000000</span>
+
+<span class="w">             </span><span class="n">fare</span><span class="w">  </span><span class="n">family_size</span><span class="w">  </span>
+<span class="nf">count</span><span class="w">  </span><span class="mf">891.000000</span><span class="w">   </span><span class="mf">891.000000</span><span class="w">  </span>
+<span class="n">mean</span><span class="w">    </span><span class="mf">32.204208</span><span class="w">     </span><span class="mf">1.904602</span><span class="w">  </span>
+<span class="n">std</span><span class="w">     </span><span class="mf">49.693429</span><span class="w">     </span><span class="mf">1.613459</span><span class="w">  </span>
+<span class="nf">min</span><span class="w">      </span><span class="mf">0.000000</span><span class="w">     </span><span class="mf">1.000000</span><span class="w">  </span>
+<span class="mi">25</span><span class="o">%</span><span class="w">      </span><span class="mf">7.910400</span><span class="w">     </span><span class="mf">1.000000</span><span class="w">  </span>
+<span class="mi">50</span><span class="o">%</span><span class="w">     </span><span class="mf">14.454200</span><span class="w">     </span><span class="mf">1.000000</span><span class="w">  </span>
+<span class="mi">75</span><span class="o">%</span><span class="w">     </span><span class="mf">31.000000</span><span class="w">     </span><span class="mf">2.000000</span><span class="w">  </span>
+<span class="nf">max</span><span class="w">    </span><span class="mf">512.329200</span><span class="w">    </span><span class="mf">11.000000</span>
+
+
+<span class="nl">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Alissa</span><span class="err">\</span><span class="n">AppData</span><span class="err">\</span><span class="k">Local</span><span class="err">\</span><span class="n">Temp</span><span class="err">\</span><span class="n">ipykernel_8600</span><span class="err">\</span><span class="mf">2498225748.</span><span class="nl">py</span><span class="p">:</span><span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="nl">FutureWarning</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DataFrame</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Series</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">chained</span><span class="w"> </span><span class="n">assignment</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">method</span><span class="p">.</span>
+<span class="n">The</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">pandas</span><span class="w"> </span><span class="mf">3.0</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">method</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">never</span><span class="w"> </span><span class="k">work</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">intermediate</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="n">always</span><span class="w"> </span><span class="n">behaves</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="p">.</span>
+
+<span class="k">For</span><span class="w"> </span><span class="n">example</span><span class="p">,</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">doing</span><span class="w"> </span><span class="s1">&#39;df[col].method(value, inplace=True)&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="s1">&#39;df.method({col: value}, inplace=True)&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">col</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">col</span><span class="o">]</span><span class="p">.</span><span class="k">method</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"> </span><span class="n">instead</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">operation</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="k">object</span><span class="p">.</span>
+
+
+<span class="w">  </span><span class="n">titanic</span><span class="o">[</span><span class="n">&#39;age&#39;</span><span class="o">]</span><span class="p">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">titanic</span><span class="o">[</span><span class="n">&#39;age&#39;</span><span class="o">]</span><span class="p">.</span><span class="n">median</span><span class="p">(),</span><span class="w"> </span><span class="n">inplace</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="png" src="../ml04_files/output_7_2.png" /></p>
+<p><code>Note:</code><br>
+- The fare distribution shows most passengers paid lower fares, with a few paying very high amounts, which we may need to keep in mind for regression modeling.</p>
+<h2 id="section-3-feature-selection-and-justification">Section 3. Feature Selection and Justification<a class="headerlink" href="#section-3-feature-selection-and-justification" title="Permanent link">&para;</a></h2>
+<h3 id="31-choose-features-and-target">3.1 Choose features and target<a class="headerlink" href="#31-choose-features-and-target" title="Permanent link">&para;</a></h3>
+<p><strong>Target:</strong> Fare<br></p>
+<p><strong>Feature Cases:</strong>
+1. <strong>Case 1: Single feature</strong> - <code>age</code>
+    - Why: Age is historically important; younger passengers may have paid different fares, or traveled in different classes.
+2. <strong>Case 2: Single feature</strong> - <code>family_size</code>
+    - Why: Families traveling together might have increased or decreased fares.
+3. <strong>Case 3: Two features</strong> - <code>age</code> + <code>family_size</code>
+    - Why: Combining Age and family size might show that younger travelers or larger families might have booked different accommodations, affecting the total fare.
+4. <strong>Case 4: Four features</strong> - <code>age</code>, <code>family_size</code>, <code>sex</code>, and <code>pclass</code>
+    - Why: Combining (age, sex) with travel details like (family size, passenger class) should help the model explain more variation in fare amounts.</p>
+<h3 id="32-define-x-features-and-y-target">3.2 Define X (features) and y (target)<a class="headerlink" href="#32-define-x-features-and-y-target" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Assign input features to X a pandas DataFrame with 1 or more input features</li>
+<li>Assign target variable to y (as applicable) - a pandas Series with a single target feature</li>
+<li>Double brackets [[ ]]  makes a 2D DataFrame</li>
+<li>Single brackets [ ]  make a 1D Series</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># -----------------------------</span>
+<span class="c1"># Case 1: age only</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">]]</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">]</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 2: family_size only</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;family_size&#39;</span><span class="p">]]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">]</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 3: age and family_size</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X3</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;family_size&#39;</span><span class="p">]]</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">]</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Case 4: age, family_size, sex, and pclass</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X4</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;family_size&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;pclass&#39;</span><span class="p">]]</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Reflection:</strong> 
+1. Why might these features affect a passenger’s fare:
+   - <code>age</code>: Children or elderly may travel differently, or pay different fares.<br />
+   - <code>family_size</code>: Larger families may buy multiple tickets or cabins.<br />
+   - <code>sex</code>: Historically, fare differences could exist by gender due to class or cabin arrangements.<br />
+   - <code>pclass</code>: Passenger class directly correlates with fare levels.<br />
+2. List all available features:
+    - survived   <br />
+    - pclass     <br />
+    - sex        <br />
+    - age        <br />
+    - sibsp      <br />
+    - parch      <br />
+    - fare       <br />
+    - embarked   <br />
+    - class      <br />
+    - who        <br />
+    - adult_male <br />
+    - deck       <br />
+    - embark_town<br />
+    - alive      <br />
+    - alone
+    - family_size </p>
+<ol>
+<li>Which other features could improve predictions and why:</li>
+<li><code>deck</code>: higher decks probably meant more expensive cabins.  </li>
+<li><code>embarked</code>: where someone got on could’ve affected fare prices.  </li>
+<li><code>alone</code>: might show differences between solo travelers and groups.  </li>
+<li>How many variables are in your Case 4:</li>
+<li>Number of variables: 4  </li>
+<li>Variables chosen: <code>age</code>, <code>family_size</code>, <code>sex</code>, <code>pclass</code>  </li>
+<li>Which variable(s) did you choose for Case 4 and why do you feel those could make good inputs:</li>
+<li>Combining demographics (age, sex) and travel info (family_size, pclass) should help the model capture more variance in fare amounts.</li>
+</ol>
+<h2 id="section-4-train-a-regression-model-linear-regression">Section 4. Train a Regression Model (Linear Regression) <br><a class="headerlink" href="#section-4-train-a-regression-model-linear-regression" title="Permanent link">&para;</a></h2>
+<p>Split the data, train the models for four feature cases, evaluate performance, and visualize results.</p>
+<h3 id="41-split-the-data">4.1 Split the Data<a class="headerlink" href="#41-split-the-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">X1_train</span><span class="p">,</span> <span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">,</span> <span class="n">y1_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">X2_train</span><span class="p">,</span> <span class="n">X2_test</span><span class="p">,</span> <span class="n">y2_train</span><span class="p">,</span> <span class="n">y2_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">X3_train</span><span class="p">,</span> <span class="n">X3_test</span><span class="p">,</span> <span class="n">y3_train</span><span class="p">,</span> <span class="n">y3_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X3</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">X4_train</span><span class="p">,</span> <span class="n">X4_test</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">,</span> <span class="n">y4_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X4</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="42-train-and-evaluate-linear-regression-models-all-4-cases">4.2 Train and Evaluate Linear Regression Models (all 4 cases)<a class="headerlink" href="#42-train-and-evaluate-linear-regression-models-all-4-cases" title="Permanent link">&para;</a></h3>
+<p>We'll use a more concise approach - create each model and immediately call the fit() method. </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Train models</span>
+<span class="n">lr_model1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">)</span>
+<span class="n">lr_model2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2_train</span><span class="p">,</span> <span class="n">y2_train</span><span class="p">)</span>
+<span class="n">lr_model3</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X3_train</span><span class="p">,</span> <span class="n">y3_train</span><span class="p">)</span>
+<span class="n">lr_model4</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y1_pred_train</span> <span class="o">=</span> <span class="n">lr_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_train</span><span class="p">)</span>
+<span class="n">y1_pred_test</span> <span class="o">=</span> <span class="n">lr_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+
+<span class="n">y2_pred_train</span> <span class="o">=</span> <span class="n">lr_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2_train</span><span class="p">)</span>
+<span class="n">y2_pred_test</span> <span class="o">=</span> <span class="n">lr_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2_test</span><span class="p">)</span>
+
+<span class="n">y3_pred_train</span> <span class="o">=</span> <span class="n">lr_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_train</span><span class="p">)</span>
+<span class="n">y3_pred_test</span> <span class="o">=</span> <span class="n">lr_model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X3_test</span><span class="p">)</span>
+
+<span class="n">y4_pred_train</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
+<span class="n">y4_pred_test</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="43-report-performance">4.3 Report Performance<a class="headerlink" href="#43-report-performance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">,</span> <span class="n">case_name</span><span class="o">=</span><span class="s2">&quot;Case&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">case_name</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Training R²:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Test R²:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="c1"># Compute RMSE manually</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Test RMSE:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmse</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Test MAE:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Evaluate all 4 cases</span>
+<span class="n">evaluate_model</span><span class="p">(</span><span class="n">y1_train</span><span class="p">,</span> <span class="n">y1_pred_train</span><span class="p">,</span> <span class="n">y1_test</span><span class="p">,</span> <span class="n">y1_pred_test</span><span class="p">,</span> <span class="s2">&quot;Case 1: Age&quot;</span><span class="p">)</span>
+<span class="n">evaluate_model</span><span class="p">(</span><span class="n">y2_train</span><span class="p">,</span> <span class="n">y2_pred_train</span><span class="p">,</span> <span class="n">y2_test</span><span class="p">,</span> <span class="n">y2_pred_test</span><span class="p">,</span> <span class="s2">&quot;Case 2: Family Size&quot;</span><span class="p">)</span>
+<span class="n">evaluate_model</span><span class="p">(</span><span class="n">y3_train</span><span class="p">,</span> <span class="n">y3_pred_train</span><span class="p">,</span> <span class="n">y3_test</span><span class="p">,</span> <span class="n">y3_pred_test</span><span class="p">,</span> <span class="s2">&quot;Case 3: Age + Family Size&quot;</span><span class="p">)</span>
+<span class="n">evaluate_model</span><span class="p">(</span><span class="n">y4_train</span><span class="p">,</span> <span class="n">y4_pred_train</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y4_pred_test</span><span class="p">,</span> <span class="s2">&quot;Case 4: Age + Family Size + Sex + Pclass&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="c">Case 1: Age:</span>
+<span class="c">  Training R²: 0</span><span class="nt">.</span><span class="c">01</span>
+<span class="c">  Test R²: 0</span><span class="nt">.</span><span class="c">003</span>
+<span class="c">  Test RMSE: 37</span><span class="nt">.</span><span class="c">972</span>
+<span class="c">  Test MAE: 25</span><span class="nt">.</span><span class="c">286</span>
+<span class="nb">----------------------------------------</span>
+<span class="c">Case 2: Family Size:</span>
+<span class="c">  Training R²: 0</span><span class="nt">.</span><span class="c">05</span>
+<span class="c">  Test R²: 0</span><span class="nt">.</span><span class="c">022</span>
+<span class="c">  Test RMSE: 37</span><span class="nt">.</span><span class="c">611</span>
+<span class="c">  Test MAE: 25</span><span class="nt">.</span><span class="c">025</span>
+<span class="nb">----------------------------------------</span>
+<span class="c">Case 3: Age </span><span class="nb">+</span><span class="c"> Family Size:</span>
+<span class="c">  Training R²: 0</span><span class="nt">.</span><span class="c">073</span>
+<span class="c">  Test R²: 0</span><span class="nt">.</span><span class="c">05</span>
+<span class="c">  Test RMSE: 37</span><span class="nt">.</span><span class="c">078</span>
+<span class="c">  Test MAE: 24</span><span class="nt">.</span><span class="c">285</span>
+<span class="nb">----------------------------------------</span>
+<span class="c">Case 4: Age </span><span class="nb">+</span><span class="c"> Family Size </span><span class="nb">+</span><span class="c"> Sex </span><span class="nb">+</span><span class="c"> Pclass:</span>
+<span class="c">  Training R²: 0</span><span class="nt">.</span><span class="c">365</span>
+<span class="c">  Test R²: 0</span><span class="nt">.</span><span class="c">399</span>
+<span class="c">  Test RMSE: 29</span><span class="nt">.</span><span class="c">489</span>
+<span class="c">  Test MAE: 20</span><span class="nt">.</span><span class="c">083</span>
+<span class="nb">----------------------------------------</span>
+</code></pre></div>
+
+<p><strong>Reflection:</strong><br></p>
+<p><strong>Compare the train vs test results for each.</strong></p>
+<ol>
+<li>Did Case 1 (Age only) overfit or underfit? Explain:<ul>
+<li>Training R²: 0.01, Test R²: 0.003</li>
+<li>Both R² values are near 0 so the model is not capturing the relationship between age and fare.</li>
+<li>Underfit: The model is too simple, using only age, so it fails to explain the variance in fare.</li>
+</ul>
+</li>
+<li>Did Case 2 (Family size only) overfit or underfit? Explain:<ul>
+<li>Training R²: 0.05, Test R²: 0.022</li>
+<li>Slight improvement over Case 1, but still very low so the model is still underfitting.</li>
+</ul>
+</li>
+<li>Did Case 3 (Age + Family size) overfit or underfit? Explain:<ul>
+<li>Training R²: 0.073, Test R²: 0.05</li>
+<li>Adding a second feature helps slightly, but R² is still very low so the model is underfit, still not enough information to predict fare accurately.</li>
+</ul>
+</li>
+<li>Did Case 4 (Age + Family size + Sex + Pclass) overfit or underfit? Explain:<ul>
+<li>Training R²: 0.365, Test R²: 0.399</li>
+<li>R² jumps significantly and test R² is slightly higher than training so there is no overfitting, model generalizes reasonably well.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Adding Age</strong></p>
+<ol>
+<li>Did adding age improve the model:<ul>
+<li>Yes, slightly. Comparing Case 2 (family size only) vs Case 3 (age + family size), R² increased from 0.022 to 0.05 on test data.</li>
+</ul>
+</li>
+<li>Propose a possible explanation (consider how age might affect ticket price, and whether the data supports that):<ul>
+<li>Age may have a minor effect on ticket price (children might have discounted tickets), but most fare variance comes from class, sex, and family size. The data shows a small positive impact of age on predictions.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Worst</strong></p>
+<ol>
+<li>Which case performed the worst:<ul>
+<li>Case 1 (Age only)</li>
+</ul>
+</li>
+<li>How do you know: <ul>
+<li>Test R² = 0.003 which shows nearly zero predictive power. RMSE = 37.972, MAE = 25.286 these are the highest errors among all cases.</li>
+</ul>
+</li>
+<li>Do you think adding more training data would improve it (and why/why not):<ul>
+<li>Possibly, but likely only a small amount. Age alone doesn’t explain fare much, so adding more data without additional features may not significantly improve predictions.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Best</strong></p>
+<ol>
+<li>Which case performed the best:<ul>
+<li>Case 4 (Age + Family size + Sex + Pclass)</li>
+</ul>
+</li>
+<li>How do you know: <ul>
+<li>Test R² = 0.399 so this has the highest predictive power. RMSE = 29.489, MAE = 20.083 these are the lowest errors.</li>
+</ul>
+</li>
+<li>Do you think adding more training data would improve it (and why/why not):<ul>
+<li>Yes, adding more training data could help the model learn more about rare combinations, so it could improve generalization slightly.</li>
+</ul>
+</li>
+</ol>
+<h2 id="section-5-compare-alternative-models">Section 5. Compare Alternative Models<a class="headerlink" href="#section-5-compare-alternative-models" title="Permanent link">&para;</a></h2>
+<p>In this section, we will take the best-performing case (case 4) and explore other regression models.</p>
+<ul>
+<li>
+<p>When working with regression models, especially those with multiple input features, we may run into overfitting - where a model fits the training data too closely and performs poorly on new data. To prevent this, we can apply regularization.</p>
+</li>
+<li>
+<p>Regularization adds a penalty to the model’s loss function, discouraging it from using very large weights (coefficients). This makes the model simpler and more likely to generalize well to new data.</p>
+</li>
+<li>
+<p>In general: </p>
+</li>
+<li>
+<p>If the basic linear regression is overfitting, try Ridge.</p>
+</li>
+<li>
+<p>If you want the model to automatically select the most important features, try Lasso.</p>
+</li>
+<li>
+<p>If you want a balanced approach, try Elastic Net.</p>
+</li>
+</ul>
+<h3 id="51-ridge-regression-l2-penalty">5.1 Ridge Regression (L2 penalty)<a class="headerlink" href="#51-ridge-regression-l2-penalty" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Ridge Regression is a regularized version of linear regression that adds a penalty to large coefficient values. It uses the L2 penalty, which adds the sum of squared coefficients to the loss function.</p>
+</li>
+<li>
+<p>This "shrinks" the coefficients, reducing the model’s sensitivity to any one feature while still keeping all features in the model.</p>
+</li>
+<li>
+<p>Penalty term: L2 = sum of squared weights</p>
+</li>
+<li>Effect: Shrinks weights, helps reduce overfitting, keeps all features</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">ridge_model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ridge_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+<span class="n">y_pred_ridge</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="52-elastic-net-l1-l2-combined">5.2 Elastic Net (L1 + L2 combined)<a class="headerlink" href="#52-elastic-net-l1-l2-combined" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Lasso Regression uses the L1 penalty, which adds the sum of absolute values of the coefficients to the loss function. Lasso can shrink some coefficients all the way to zero, effectively removing less important features. This makes it useful for feature selection.</p>
+</li>
+<li>
+<p>Penalty term: L1 = sum of absolute values of weights</p>
+</li>
+<li>
+<p>Effect: Can shrink some weights to zero (drops features), simplifies the model</p>
+</li>
+<li>
+<p>Elastic Net combines both L1 (Lasso) and L2 (Ridge) penalties. It balances the feature selection ability of Lasso with the stability of Ridge.</p>
+</li>
+<li>
+<p>We control the balance with a parameter called l1_ratio:</p>
+</li>
+<li>
+<p>If l1_ratio = 0, it behaves like Ridge</p>
+</li>
+<li>If l1_ratio = 1, it behaves like Lasso</li>
+<li>Values in between mix both types</li>
+<li>Penalty term: α × (L1 + L2)</li>
+<li>Effect: Shrinks weights and can drop some features — flexible and powerful</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">elastic_model</span> <span class="o">=</span> <span class="n">ElasticNet</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">elastic_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+<span class="n">y_pred_elastic</span> <span class="o">=</span> <span class="n">elastic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="53-polynomial-regression">5.3 Polynomial Regression<a class="headerlink" href="#53-polynomial-regression" title="Permanent link">&para;</a></h3>
+<p>Linear regression is a simple two dimensional relationship - a simple straight line. But we can test more complex relationships. Polynomial regression adds interaction and nonlinear terms to the model. Be careful here - higher-degree polynomials can easily overfit.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Set up the poly inputs</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">X4_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
+<span class="n">X4_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use the poly inputs in the LR model</span>
+<span class="n">poly_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">poly_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train_poly</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">poly_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test_poly</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="54-visualize-polynomial-cubic-fit-for-1-input-feature-age">5.4 Visualize Polynomial Cubic Fit (for 1 input feature - Age)<a class="headerlink" href="#54-visualize-polynomial-cubic-fit-for-1-input-feature-age" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y_pred_poly</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression: Age vs Fare&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml04_files/output_29_0.png" /></p>
+<p><strong>Reflection:</strong> </p>
+<ol>
+<li>What patterns does the cubic model seem to capture:<ul>
+<li>It captures non-linear trends, or small increases or decreases in fare depending on age that linear regression cannot.</li>
+</ul>
+</li>
+<li>Where does it perform well or poorly:<ul>
+<li>Performs well:</li>
+<li>In the middle ranges of age (20-40), where most passengers are, predictions are closer to actual fares.</li>
+<li>Performs poorly:</li>
+<li>Outliers (very high fares) the model can’t perfectly predict these, since polynomial regression tries to fit the general trend, not individual extreme points.</li>
+</ul>
+</li>
+<li>Did the polynomial fit outperform linear regression:<ul>
+<li>Yes, the cubic polynomial better captures fare variation with age, even with just one feature.</li>
+</ul>
+</li>
+<li>Where (on the graph or among which kinds of data points) does it fit best:<ul>
+<li>The cubic fit is best where the data is dense, around ages 20-40, where there are enough passengers to capture a pattern.</li>
+</ul>
+</li>
+</ol>
+<h3 id="54-compare-all-models">5.4 Compare All Models<a class="headerlink" href="#54-compare-all-models" title="Permanent link">&para;</a></h3>
+<p>Create a summary table or printout comparing all models:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="c1"># Compute RMSE manually for older sklearn compatibility</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> | R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> | RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Base Linear Regression</span>
+<span class="n">y_pred_linear</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Linear Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_linear</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Ridge Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_ridge</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;ElasticNet&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_elastic</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (deg 3)&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Linear Regression | R²: 0.399 | RMSE: 29.49 | MAE: 20.08
+Ridge Regression | R²: 0.400 | RMSE: 29.47 | MAE: 20.05
+ElasticNet | R²: 0.429 | RMSE: 28.75 | MAE: 17.39
+Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
+</code></pre></div>
+
+<p><code>Note:</code><br>
+- The polynomial regression (degree 3) model performed best overall, showing the highest R² (0.506) and lowest errors (RMSE 26.72, MAE 15.05). This suggests that adding nonlinearity helped the model capture more complex patterns compared to the linear, ridge, and elastic net models.</p>
+<h3 id="55-visualize-higher-order-polynomial-for-the-same-1-input-case">5.5 Visualize Higher Order Polynomial (for the same 1 input case)<a class="headerlink" href="#55-visualize-higher-order-polynomial-for-the-same-1-input-case" title="Permanent link">&para;</a></h3>
+<p>Visualize the same single input case above, but with a higher degree polynomial (5).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Degree 5 polynomial</span>
+<span class="n">poly_high</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">X4_train_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
+<span class="n">X4_test_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+
+<span class="n">poly_model_high</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">poly_model_high</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train_poly_high</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+<span class="n">y_pred_poly_high</span> <span class="o">=</span> <span class="n">poly_model_high</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test_poly_high</span><span class="p">)</span>
+
+<span class="c1"># Visualize (age vs fare)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y_pred_poly_high</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly deg 5)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression: Age vs Fare (Degree 5)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml04_files/output_35_0.png" /></p>
+<p><code>Note:</code><br>
+- The degree 5 fit looks visually similar in the scatter plot, but to really see the difference in performance and overfitting, we can compare their metrics using RMSE, MAE, and R².</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Generate Metrics for Degree 5 polynomial</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="c1"># Compute RMSE manually for older sklearn compatibility</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> | R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> | RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Base Linear Regression</span>
+<span class="n">y_pred_linear</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (deg 5)&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_poly_high</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Polynomial Regression (deg 5) | R²: 0.096 | RMSE: 36.16 | MAE: 18.24
+</code></pre></div>
+
+<h2 id="section-6-final-thoughts-insights">Section 6. Final Thoughts &amp; Insights<a class="headerlink" href="#section-6-final-thoughts-insights" title="Permanent link">&para;</a></h2>
+<h3 id="61-summarize-findings">6.1 Summarize Findings<a class="headerlink" href="#61-summarize-findings" title="Permanent link">&para;</a></h3>
+<p>A correlation heatmap helps identify which features are most strongly associated with fare.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reverse pclass so higher numbers = higher class</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;pclass_rev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;pclass&#39;</span><span class="p">]</span> 
+
+<span class="c1"># Compute correlation with fare</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[[</span><span class="s1">&#39;fare&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;family_size&#39;</span><span class="p">,</span> <span class="s1">&#39;pclass_rev&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation of Selected Features with Fare&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml04_files/output_39_0.png" /></p>
+<ol>
+<li>
+<p>What features were most useful?</p>
+<ul>
+<li>Passenger class (pclass) is the strongest predictor of fare, followed by family size. Age has only a minor effect. This helps explain why including pclass in Case 4 dramatically improved model performance compared to using age or family size alone.</li>
+</ul>
+</li>
+<li>
+<p>What regression model performed best?</p>
+<ul>
+<li>The polynomial regression (degree 3) model performed the best overall with the highest R² (0.506) and lowest errors. In contrast, the degree 5 polynomial dropped to an R² of 0.096, showing clear overfitting. Regularized models like Ridge and ElasticNet offered small improvements over plain linear regression, but the cubic model captured more meaningful nonlinearity.
+<br></li>
+</ul>
+</li>
+</ol>
+<h3 id="model-performance-summary">Model Performance Summary<a class="headerlink" href="#model-performance-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>R²</th>
+<th>RMSE</th>
+<th>MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear Regression</td>
+<td>0.399</td>
+<td>29.49</td>
+<td>20.08</td>
+</tr>
+<tr>
+<td>Ridge Regression</td>
+<td>0.400</td>
+<td>29.47</td>
+<td>20.05</td>
+</tr>
+<tr>
+<td>ElasticNet</td>
+<td>0.429</td>
+<td>28.75</td>
+<td>17.39</td>
+</tr>
+<tr>
+<td>Polynomial Regression (deg 3)</td>
+<td>0.506</td>
+<td>26.72</td>
+<td>15.05</td>
+</tr>
+<tr>
+<td>Polynomial Regression (deg 5)</td>
+<td>0.096</td>
+<td>36.16</td>
+<td>18.24</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>How did model complexity or regularization affect results?<ul>
+<li>Adding some complexity (degree 3) improved performance by allowing the model to fit curved trends, but too much complexity (degree 5) caused overfitting and worse accuracy. Regularization slightly stabilized results but didn’t make a major difference compared to the cubic polynomial model.</li>
+</ul>
+</li>
+</ol>
+<h3 id="62-discuss-challenges">6.2 Discuss Challenges<a class="headerlink" href="#62-discuss-challenges" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Was fare hard to predict? Why?</p>
+<ul>
+<li>Yes, fare was difficult to predict accurately because it depends on multiple factors, like passenger class, family size, and age. Identifying the best combination of features while exploring and testing different models was challenging.</li>
+</ul>
+</li>
+<li>
+<p>Did skew or outliers impact the models?</p>
+<ul>
+<li>Definitely. The data is skewed, and a few very high fares act as outliers that heavily influenced error metrics and made simple regression models less reliable.</li>
+</ul>
+</li>
+</ol>
+<h3 id="63-optional-next-steps">6.3 Optional Next Steps<a class="headerlink" href="#63-optional-next-steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Experiment with additional features:</strong> Including variables like deck (cabin level), embarked (boarding location), or alone (solo vs. group travelers) could help the model capture more of the variation in fares and improve predictions.</p>
+</li>
+<li>
+<p><strong>Flip the prediction target:</strong> Instead of predicting fare, try predicting age. This reversal could be interesting, as age might be easier to estimate from features like class, fare, or family size.</p>
+</li>
+<li>
+<p><strong>Address skew in fare values:</strong> Applying a log transformation to fare could reduce skew, making the data more suitable for regression and potentially improving model performance.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
