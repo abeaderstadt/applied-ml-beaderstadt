@@ -1,8 +1,8 @@
-# Project 4: Beaderstadt XYZ
-> Update this README to fit project 4.
+# Project 4: Predicting Titanic Fare Using Regression
+> Exploring which features drive Titanic ticket prices and which regression models capture fare patterns best.
 
 ## Project Overview
-In this project, I explore the Titanic dataset to see which factors best predict survival. I train and evaluate three types of classifiers. Decision Tree, Support Vector Machine (SVM), and Neural Network using different feature sets. The goal is to understand how each model performs, visualize their decision-making, and uncover patterns that help predict who survived.
+In this project, we dig into what drives Titanic ticket prices. Using features like age, sex, class, and family size, we test multiple regression models to see which ones capture fare patterns best and which factors actually matter. The goal is to understand how features influence fare, evaluate different regression techniques, and highlight challenges like skewed data and outliers.
 
 ---
 
@@ -24,90 +24,85 @@ In this project, I explore the Titanic dataset to see which factors best predict
 
 ### 2.1 Handle Missing Values
 - Imputed missing `age` values with the median.
-- Filled missing `embark_town` values with the mode.
+- Dropped rows with missing `fare` values.
 
 ### 2.2 Feature Engineering
 - Added `family_size` = `sibsp` + `parch` + 1.
-- Created binary feature `alone`.
-- Encoded categorical variables (`sex` and `embarked`) as numeric.
+- Converted categorical features (`sex`, `embarked`, `class`, etc.) into numeric/dummy variables.
 
   - **Rationale:**
-    - Family size and traveling alone may influence survival probability.
-    - Numeric encoding enables machine learning models to process these features.
+    - Family size and demographics likely influence fare.
+    - Numeric encoding ensures models can process categorical inputs.
 
 ---
 
 ## 3. Feature Selection and Target Definition
 - Input features explored for modeling:  
-  - **Case 1:** `alone`  
-  - **Case 2:** `age`  
-  - **Case 3:** `age` + `family_size`  
+   - **Case 1:** - `age`
+   - **Case 2:** - `family_size`
+   - **Case 3:** - `age` + `family_size`
+   - **Case 4:** - `age`, `family_size`, `sex`, and `pclass`
 
-- Target variable: `survived`.
+- Target variable: `fare`.
 
 **Reasoning:**  
-- Using different feature combinations lets us compare performance and see which factors are most predictive.
+- Comparing feature combinations helps identify which factors are most important for predicting fares.
 
 ---
 
 ## 4. Data Splitting and Stratification
-- Split into training and test sets using stratified sampling to keep class balance.
-- Ensures training/test sets reflect the original distribution of survived vs. not-survived passengers.
+- Split into training and test sets using train_test_split().
+- Ensured splits were consistent across all four feature cases for fair comparison.
 - 
 ---
 
 ## 5. Model Training and Evaluation
 
-### 5.1 Decision Tree Classifier
-- Trained on all three feature sets.
-- Evaluated using classification reports and confusion matrices.
-- Visualized decision trees to interpret feature importance.
+### 5.1 Linear Regression
+- Trained linear regression models for all four feature cases.
+- Evaluated using R², RMSE, and MAE.
+- Observed that Case 4 (age + family_size + sex + pclass) had the best predictive power.
 
-### 5.2 Support Vector Machine (SVM)
-- Trained SVM models with different kernels (RBF, linear, polynomial, sigmoid).
-- Visualized support vectors in 1D and 2D plots for insights into decision boundaries.
+### 5.2 Regularized Models
+- Ridge Regression (L2): Reduced overfitting, but small improvement over linear regression.
+- ElasticNet (L1 + L2): Balanced regularization and feature selection, performed slightly better than Ridge.
 
-### 5.3 Neural Network Classifier
-- Trained a Multi-Layer Perceptron using `age` and `family_size`.
-- Evaluated performance on test data.
-- Visualized decision surfaces to understand the model’s learned patterns.
+### 5.3 Polynomial Regression
+- Degree 3 (cubic): Captured non-linear trends, provided the best performance overall.
+- Degree 5: Overfit the data, R² dropped significantly despite visually similar curves.
 
-**Reflection:**
-- Comparing models helps identify which algorithm and feature combination best predicts survival.
-- Decision Tree models are interpretable; SVMs handle complex boundaries; Neural Networks capture non-linear patterns.
-- Visualizations provide insights into how models make predictions and where errors occur.
+### Model Performance Summary
+| Model                         | R²    | RMSE  | MAE   |
+| ----------------------------- | ----- | ----- | ----- |
+| Linear Regression             | 0.399 | 29.49 | 20.08 |
+| Ridge Regression              | 0.400 | 29.47 | 20.05 |
+| ElasticNet                    | 0.429 | 28.75 | 17.39 |
+| Polynomial Regression (deg 3) | 0.506 | 26.72 | 15.05 |
+| Polynomial Regression (deg 5) | 0.096 | 36.16 | 18.24 |
 
 ---
 
 ## 6. Final Thoughts & Insights
 
 ### Model Comparison Summary
+- Most useful features: Passenger class (pclass) was the strongest predictor, followed by family size; age had a minor effect.
+- Best performing model: Polynomial regression (degree 3).
+- Complexity & regularization: Some complexity (degree 3) improved performance, too much (degree 5) caused overfitting. Regularization slightly stabilized results but didn’t outperform the cubic polynomial.
 
-| Model Type | Case | Features Used | Accuracy | Precision | Recall | F1-Score | Notes |
-|------------|------|---------------|----------|-----------|--------|-----------|-------|
-| Decision Tree | Case 1 | alone | 63% | 51% | 58% | 54% | Tie / Decision Tree & SVM |
-|                   | Case 2 | age | 61% | 50% | 17% | 26% | - |
-|                   | Case 3 | age + family_size | 59% | 45% | 33% | 38% | - |
-|-------------------|------|---------------|----------|-----------|--------|-----------|-------|
-| SVM (RBF Kernel)| Case 1 | alone | 63% | 51% | 58% | 54% | Tie / Decision Tree & SVM |
-|                    | Case 2 | age | 63% | 71% | 7% | 13% | Best model for Case 2 |
-|                    | Case 3 | age + family_size | 63% | 71% | 7% | 13% | - |
-|-------------------|------|---------------|----------|-----------|--------|-----------|-------|
-| Neural Network (MLP) | Case 3 | age + family_size | 66% | 65% | 29% | 40% | Best model for Case 3 |
+**Challenges:** Fare prediction is tricky due to skewed values, outliers, and multiple interacting features.
 
-- Even simple features like alone can provide predictive power.
-- Adding family_size improved Neural Network recall, but SVC and Decision Tree saw limited benefit.
-- Neural Networks perform best on two-feature sets, capturing subtle patterns in survival.
-- Stratified sampling helps ensure reliable evaluation.
-- Future work: explore additional features.
+**Optional next steps:**
+- Explore additional features like deck, embarked, or alone.
+- Flip the target to predict age instead of fare.
+- Apply log transformation to fare to address skew and improve regression performance.
 
 ---
 
 ## How to Run
 
 1. **Open the Project Notebook**  
-   Navigate to `notebooks/project03` and open the Jupyter notebook:  
-   `ml03_beaderstadt.ipynb`
+   Navigate to `notebooks/project04` and open the Jupyter notebook:  
+   `ml04_beaderstadt.ipynb`
 
 2. **Select the Correct Kernel**  
    Ensure the notebook uses the correct Python environment where required libraries are installed.
@@ -119,5 +114,4 @@ In this project, I explore the Titanic dataset to see which factors best predict
    Execute cells sequentially to load data, prepare features, train models, and visualize results.
 
 5. **View Results**  
-   Classification reports, confusion matrices, decision trees, and decision surfaces display inline.  
-   Use these outputs to analyze survival patterns and model performance.
+   Review outputs such as R², RMSE, MAE, and plots to analyze model performance and feature impact.
