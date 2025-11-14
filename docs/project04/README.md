@@ -68,8 +68,8 @@ In this project, we dig into what drives Titanic ticket prices. Using features l
 - ElasticNet (L1 + L2): Balanced regularization and feature selection, performed slightly better than Ridge.
 
 ### 5.3 Polynomial Regression
-- Degree 3 (cubic): Captured non-linear trends, provided the best performance overall.
-- Degree 5: Overfit the data, R² dropped significantly despite visually similar curves.
+- Poly Degree 3 (Case 4): Captured non-linear trends, provided the best performance overall.
+- Visualizations (Case 1): Both degree 3 and degree 5 polynomials were visualized for the single feature (Age). The two plots looked nearly identical, showing that the higher-degree model didn’t add any meaningful improvement.
 
 ### Model Performance Summary
 | Model                         | R²    | RMSE  | MAE   |
@@ -78,7 +78,6 @@ In this project, we dig into what drives Titanic ticket prices. Using features l
 | Ridge Regression              | 0.400 | 29.47 | 20.05 |
 | ElasticNet                    | 0.429 | 28.75 | 17.39 |
 | Polynomial Regression (deg 3) | 0.506 | 26.72 | 15.05 |
-| Polynomial Regression (deg 5) | 0.096 | 36.16 | 18.24 |
 
 ---
 
@@ -87,7 +86,7 @@ In this project, we dig into what drives Titanic ticket prices. Using features l
 ### Model Comparison Summary
 - Most useful features: Passenger class (pclass) was the strongest predictor, followed by family size; age had a minor effect.
 - Best performing model: Polynomial regression (degree 3).
-- Complexity & regularization: Some complexity (degree 3) improved performance, too much (degree 5) caused overfitting. Regularization slightly stabilized results but didn’t outperform the cubic polynomial.
+- Complexity & regularization: Some complexity (degree 3) improved performance. Regularization slightly stabilized results but didn’t outperform the cubic polynomial.
 
 **Challenges:** Fare prediction is tricky due to skewed values, outliers, and multiple interacting features.
 
