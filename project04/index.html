@@ -1165,8 +1165,8 @@
 </ul>
 <h3 id="53-polynomial-regression">5.3 Polynomial Regression<a class="headerlink" href="#53-polynomial-regression" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Degree 3 (cubic): Captured non-linear trends, provided the best performance overall.</li>
-<li>Degree 5: Overfit the data, R² dropped significantly despite visually similar curves.</li>
+<li>Poly Degree 3 (Case 4): Captured non-linear trends, provided the best performance overall.</li>
+<li>Visualizations (Case 1): Both degree 3 and degree 5 polynomials were visualized for the single feature (Age). The two plots looked nearly identical, showing that the higher-degree model didn’t add any meaningful improvement.</li>
 </ul>
 <h3 id="model-performance-summary">Model Performance Summary<a class="headerlink" href="#model-performance-summary" title="Permanent link">&para;</a></h3>
 <table>
@@ -1203,12 +1203,6 @@
 <td>26.72</td>
 <td>15.05</td>
 </tr>
-<tr>
-<td>Polynomial Regression (deg 5)</td>
-<td>0.096</td>
-<td>36.16</td>
-<td>18.24</td>
-</tr>
 </tbody>
 </table>
 <hr />
@@ -1217,7 +1211,7 @@
 <ul>
 <li>Most useful features: Passenger class (pclass) was the strongest predictor, followed by family size; age had a minor effect.</li>
 <li>Best performing model: Polynomial regression (degree 3).</li>
-<li>Complexity &amp; regularization: Some complexity (degree 3) improved performance, too much (degree 5) caused overfitting. Regularization slightly stabilized results but didn’t outperform the cubic polynomial.</li>
+<li>Complexity &amp; regularization: Some complexity (degree 3) improved performance. Regularization slightly stabilized results but didn’t outperform the cubic polynomial.</li>
 </ul>
 <p><strong>Challenges:</strong> Fare prediction is tricky due to skewed values, outliers, and multiple interacting features.</p>
 <p><strong>Optional next steps:</strong>

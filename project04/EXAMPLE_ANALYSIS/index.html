@@ -1515,7 +1515,7 @@
 <span class="nf">max</span><span class="w">    </span><span class="mf">512.329200</span><span class="w">    </span><span class="mf">11.000000</span>
 
 
-<span class="nl">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Alissa</span><span class="err">\</span><span class="n">AppData</span><span class="err">\</span><span class="k">Local</span><span class="err">\</span><span class="n">Temp</span><span class="err">\</span><span class="n">ipykernel_8600</span><span class="err">\</span><span class="mf">2498225748.</span><span class="nl">py</span><span class="p">:</span><span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="nl">FutureWarning</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DataFrame</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Series</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">chained</span><span class="w"> </span><span class="n">assignment</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">method</span><span class="p">.</span>
+<span class="nl">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Alissa</span><span class="err">\</span><span class="n">AppData</span><span class="err">\</span><span class="k">Local</span><span class="err">\</span><span class="n">Temp</span><span class="err">\</span><span class="n">ipykernel_10544</span><span class="err">\</span><span class="mf">2498225748.</span><span class="nl">py</span><span class="p">:</span><span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="nl">FutureWarning</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DataFrame</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Series</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">chained</span><span class="w"> </span><span class="n">assignment</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">method</span><span class="p">.</span>
 <span class="n">The</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">pandas</span><span class="w"> </span><span class="mf">3.0</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">method</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">never</span><span class="w"> </span><span class="k">work</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">intermediate</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="n">always</span><span class="w"> </span><span class="n">behaves</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="p">.</span>
 
 <span class="k">For</span><span class="w"> </span><span class="n">example</span><span class="p">,</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">doing</span><span class="w"> </span><span class="s1">&#39;df[col].method(value, inplace=True)&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="s1">&#39;df.method({col: value}, inplace=True)&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">col</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">col</span><span class="o">]</span><span class="p">.</span><span class="k">method</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"> </span><span class="n">instead</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">operation</span><span class="w"> </span><span class="n">inplace</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="k">object</span><span class="p">.</span>
@@ -1782,7 +1782,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">ridge_model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">ridge_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
-<span class="n">y_pred_ridge</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+<span class="n">y4_pred_ridge</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="52-elastic-net-l1-l2-combined">5.2 Elastic Net (L1 + L2 combined)<a class="headerlink" href="#52-elastic-net-l1-l2-combined" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1811,27 +1811,38 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">elastic_model</span> <span class="o">=</span> <span class="n">ElasticNet</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">elastic_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
-<span class="n">y_pred_elastic</span> <span class="o">=</span> <span class="n">elastic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+<span class="n">y4_pred_elastic</span> <span class="o">=</span> <span class="n">elastic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="53-polynomial-regression">5.3 Polynomial Regression<a class="headerlink" href="#53-polynomial-regression" title="Permanent link">&para;</a></h3>
 <p>Linear regression is a simple two dimensional relationship - a simple straight line. But we can test more complex relationships. Polynomial regression adds interaction and nonlinear terms to the model. Be careful here - higher-degree polynomials can easily overfit.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Set up the poly inputs</span>
-<span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">X4_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
-<span class="n">X4_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+<span class="n">poly4</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">X4_train_poly</span> <span class="o">=</span> <span class="n">poly4</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
+<span class="n">X4_test_poly</span> <span class="o">=</span> <span class="n">poly4</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># Use the poly inputs in the LR model</span>
-<span class="n">poly_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">poly_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train_poly</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
-<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">poly_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test_poly</span><span class="p">)</span>
+<span class="n">model_poly4</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly4</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train_poly</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
+<span class="n">y4_pred_poly</span> <span class="o">=</span> <span class="n">model_poly4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test_poly</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="54-visualize-polynomial-cubic-fit-for-1-input-feature-age">5.4 Visualize Polynomial Cubic Fit (for 1 input feature - Age)<a class="headerlink" href="#54-visualize-polynomial-cubic-fit-for-1-input-feature-age" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y_pred_poly</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly)&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Prepare polynomial transformation for Case 1</span>
+<span class="n">poly1</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">X1_train_poly</span> <span class="o">=</span> <span class="n">poly1</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X1_train</span><span class="p">)</span>
+<span class="n">X1_test_poly</span> <span class="o">=</span> <span class="n">poly1</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+
+<span class="c1"># Fit polynomial model for Case 1 visualization</span>
+<span class="n">model_poly1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train_poly</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">)</span>
+<span class="n">y1_pred_poly</span> <span class="o">=</span> <span class="n">model_poly1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test_poly</span><span class="p">)</span>
+
+<span class="c1"># Visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_pred_poly</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly deg 3)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression: Age vs Fare&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression: Age vs Fare (Case 1)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
@@ -1839,7 +1850,7 @@
 <p><strong>Reflection:</strong> </p>
 <ol>
 <li>What patterns does the cubic model seem to capture:<ul>
-<li>It captures non-linear trends, or small increases or decreases in fare depending on age that linear regression cannot.</li>
+<li>For Case 1 (age only), the cubic polynomial captures non-linear trends, or small increases or decreases in fare depending on age that linear regression cannot.</li>
 </ul>
 </li>
 <li>Where does it perform well or poorly:<ul>
@@ -1867,13 +1878,13 @@
     <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> | R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> | RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Base Linear Regression</span>
-<span class="n">y_pred_linear</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
+<span class="c1"># Base Linear Regression (Case 4)</span>
+<span class="n">y4_pred_linear</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
 
-<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Linear Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_linear</span><span class="p">)</span>
-<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Ridge Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_ridge</span><span class="p">)</span>
-<span class="n">report</span><span class="p">(</span><span class="s2">&quot;ElasticNet&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_elastic</span><span class="p">)</span>
-<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (deg 3)&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Linear Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y4_pred_linear</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Ridge Regression&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y4_pred_ridge</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;ElasticNet&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y4_pred_elastic</span><span class="p">)</span>
+<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (deg 3)&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y4_pred_poly</span><span class="p">)</span>
 </code></pre></div>
 <div class="codehilite"><pre><span></span><code>Linear Regression | R²: 0.399 | RMSE: 29.49 | MAE: 20.08
 Ridge Regression | R²: 0.400 | RMSE: 29.47 | MAE: 20.05
@@ -1885,19 +1896,21 @@ Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
 - The polynomial regression (degree 3) model performed best overall, showing the highest R² (0.506) and lowest errors (RMSE 26.72, MAE 15.05). This suggests that adding nonlinearity helped the model capture more complex patterns compared to the linear, ridge, and elastic net models.</p>
 <h3 id="55-visualize-higher-order-polynomial-for-the-same-1-input-case">5.5 Visualize Higher Order Polynomial (for the same 1 input case)<a class="headerlink" href="#55-visualize-higher-order-polynomial-for-the-same-1-input-case" title="Permanent link">&para;</a></h3>
 <p>Visualize the same single input case above, but with a higher degree polynomial (5).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Degree 5 polynomial</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Degree 5 polynomial for Case 1 (Age vs Fare)</span>
 <span class="n">poly_high</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">X4_train_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X4_train</span><span class="p">)</span>
-<span class="n">X4_test_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
 
+<span class="c1"># Transform inputs</span>
+<span class="n">X1_train_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X1_train</span><span class="p">)</span>
+<span class="n">X1_test_poly_high</span> <span class="o">=</span> <span class="n">poly_high</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+
+<span class="c1"># Fit polynomial degree 5 model</span>
 <span class="n">poly_model_high</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">poly_model_high</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X4_train_poly_high</span><span class="p">,</span> <span class="n">y4_train</span><span class="p">)</span>
-<span class="n">y_pred_poly_high</span> <span class="o">=</span> <span class="n">poly_model_high</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test_poly_high</span><span class="p">)</span>
+<span class="n">poly_model_high</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train_poly_high</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">)</span>
+<span class="n">y1_pred_poly_high</span> <span class="o">=</span> <span class="n">poly_model_high</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test_poly_high</span><span class="p">)</span>
 
-<span class="c1"># Visualize (age vs fare)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X4_test</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">y_pred_poly_high</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly deg 5)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_pred_poly_high</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (Poly deg 5)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression: Age vs Fare (Degree 5)&quot;</span><span class="p">)</span>
@@ -1905,24 +1918,16 @@ Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 <p><img alt="png" src="../ml04_files/output_35_0.png" /></p>
-<p><code>Note:</code><br>
-- The degree 5 fit looks visually similar in the scatter plot, but to really see the difference in performance and overfitting, we can compare their metrics using RMSE, MAE, and R².</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Generate Metrics for Degree 5 polynomial</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="c1"># Compute RMSE manually for older sklearn compatibility</span>
-    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
-    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> | R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> | RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Base Linear Regression</span>
-<span class="n">y_pred_linear</span> <span class="o">=</span> <span class="n">lr_model4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X4_test</span><span class="p">)</span>
-
-<span class="n">report</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (deg 5)&quot;</span><span class="p">,</span> <span class="n">y4_test</span><span class="p">,</span> <span class="n">y_pred_poly_high</span><span class="p">)</span>
-</code></pre></div>
-<div class="codehilite"><pre><span></span><code>Polynomial Regression (deg 5) | R²: 0.096 | RMSE: 36.16 | MAE: 18.24
-</code></pre></div>
-
+<p><strong>Summary:</strong><br>
+- The degree-5 plot looks almost identical to the degree-3 plot. This makes sense because there isn’t a strong nonlinear pattern between age and fare in this dataset. Both polynomial models basically fit the same scatter of points.</p>
+<ul>
+<li>
+<p>The higher-degree model doesn’t add anything new, it just adds unnecessary complexity (wiggles) without improving the fit. This usually happens when the data isn’t complex enough for a higher-order polynomial to capture additional patterns.</p>
+</li>
+<li>
+<p>Overall, the cubic (degree 3) polynomial works better than degree 5, improving the fit while keeping the model simple and interpretable.</p>
+</li>
+</ul>
 <h2 id="section-6-final-thoughts-insights">Section 6. Final Thoughts &amp; Insights<a class="headerlink" href="#section-6-final-thoughts-insights" title="Permanent link">&para;</a></h2>
 <h3 id="61-summarize-findings">6.1 Summarize Findings<a class="headerlink" href="#61-summarize-findings" title="Permanent link">&para;</a></h3>
 <p>A correlation heatmap helps identify which features are most strongly associated with fare.</p>
@@ -1936,7 +1941,7 @@ Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation of Selected Features with Fare&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p><img alt="png" src="../ml04_files/output_39_0.png" /></p>
+<p><img alt="png" src="../ml04_files/output_38_0.png" /></p>
 <ol>
 <li>
 <p>What features were most useful?</p>
@@ -1947,7 +1952,7 @@ Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
 <li>
 <p>What regression model performed best?</p>
 <ul>
-<li>The polynomial regression (degree 3) model performed the best overall with the highest R² (0.506) and lowest errors. In contrast, the degree 5 polynomial dropped to an R² of 0.096, showing clear overfitting. Regularized models like Ridge and ElasticNet offered small improvements over plain linear regression, but the cubic model captured more meaningful nonlinearity.
+<li>The polynomial regression (degree 3) model performed the best overall with the highest R² (0.506) and lowest errors. Regularized models like Ridge and ElasticNet offered small improvements over plain linear regression, but the cubic model captured more meaningful nonlinearity.
 <br></li>
 </ul>
 </li>
@@ -1987,17 +1992,11 @@ Polynomial Regression (deg 3) | R²: 0.506 | RMSE: 26.72 | MAE: 15.05
 <td>26.72</td>
 <td>15.05</td>
 </tr>
-<tr>
-<td>Polynomial Regression (deg 5)</td>
-<td>0.096</td>
-<td>36.16</td>
-<td>18.24</td>
-</tr>
 </tbody>
 </table>
 <ol>
 <li>How did model complexity or regularization affect results?<ul>
-<li>Adding some complexity (degree 3) improved performance by allowing the model to fit curved trends, but too much complexity (degree 5) caused overfitting and worse accuracy. Regularization slightly stabilized results but didn’t make a major difference compared to the cubic polynomial model.</li>
+<li>Adding some complexity (degree 3) improved performance by allowing the model to fit curved trends, but too much complexity (degree 5) caused overfitting and worse accuracy. Regularization with Ridge or ElasticNet slightly stabilized the linear models, reducing errors compared to simple Linear Regression, but the cubic polynomial still gave the best overall performance.</li>
 </ul>
 </li>
 </ol>
