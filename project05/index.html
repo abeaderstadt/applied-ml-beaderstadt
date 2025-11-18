@@ -12,10 +12,10 @@
         <meta name="author" content="Alissa Beaderstadt">
       
       
-        <link rel="canonical" href="https://abeaderstadt.github.io/beaderstadt-ml-template/project03/">
+        <link rel="canonical" href="https://abeaderstadt.github.io/beaderstadt-ml-template/project05/">
       
       
-        <link rel="prev" href="../project02/EXAMPLE_ANALYSIS/">
+        <link rel="prev" href="../project04/EXAMPLE_ANALYSIS/">
       
       
         <link rel="next" href="EXAMPLE_ANALYSIS/">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-3-beaderstadt-titanic-classification" class="md-skip">
+        <a href="#project-5-ensemble-machine-learning-wine-dataset" class="md-skip">
           Skip to content
         </a>
       
@@ -479,8 +479,6 @@
       
   
   
-    
-  
   
   
     
@@ -493,11 +491,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -513,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Project 03
@@ -524,32 +524,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../project03/" class="md-nav__link">
         
   
   
@@ -560,179 +538,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-steps-in-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Steps in This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-import-and-inspect-the-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Import and Inspect the Data
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-data-exploration-and-preparation" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Data Exploration and Preparation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Data Exploration and Preparation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-handle-missing-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1 Handle Missing Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-feature-engineering" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 Feature Engineering
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-feature-selection-and-target-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Feature Selection and Target Definition
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-data-splitting-and-stratification" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Data Splitting and Stratification
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-model-training-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Model Training and Evaluation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Model Training and Evaluation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-decision-tree-classifier" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.1 Decision Tree Classifier
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-support-vector-machine-svm" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.2 Support Vector Machine (SVM)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-neural-network-classifier" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.3 Neural Network Classifier
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-final-thoughts-insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Final Thoughts &amp; Insights
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Final Thoughts &amp; Insights">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#model-comparison-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Model Comparison Summary
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-run" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to Run
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -745,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="EXAMPLE_ANALYSIS/" class="md-nav__link">
+      <a href="../project03/EXAMPLE_ANALYSIS/" class="md-nav__link">
         
   
   
@@ -870,8 +675,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -882,13 +689,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -904,7 +709,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Project 05
@@ -915,10 +720,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../project05/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -929,6 +756,104 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models-evaluated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models Evaluated
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Run
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -941,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../project05/EXAMPLE_ANALYSIS/" class="md-nav__link">
+      <a href="EXAMPLE_ANALYSIS/" class="md-nav__link">
         
   
   
@@ -997,133 +922,58 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-steps-in-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Steps in This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-import-and-inspect-the-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Import and Inspect the Data
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-data-exploration-and-preparation" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Data Exploration and Preparation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Data Exploration and Preparation">
+    <nav class="md-nav" aria-label="Project Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-handle-missing-values" class="md-nav__link">
+  <a href="#dataset" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 Handle Missing Values
+      Dataset
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-feature-engineering" class="md-nav__link">
+  <a href="#feature-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 Feature Engineering
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-feature-selection-and-target-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Feature Selection and Target Definition
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-data-splitting-and-stratification" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Data Splitting and Stratification
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-model-training-and-evaluation" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Model Training and Evaluation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Model Training and Evaluation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-decision-tree-classifier" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.1 Decision Tree Classifier
+      Feature Selection
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#52-support-vector-machine-svm" class="md-nav__link">
+  <a href="#data-preparation" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2 Support Vector Machine (SVM)
+      Data Preparation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-neural-network-classifier" class="md-nav__link">
+  <a href="#models-evaluated" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3 Neural Network Classifier
+      Models Evaluated
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-final-thoughts-insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Final Thoughts &amp; Insights
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Final Thoughts &amp; Insights">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#model-comparison-summary" class="md-nav__link">
+  <a href="#results-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Model Comparison Summary
+      Results Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusions
     </span>
   </a>
   
@@ -1162,220 +1012,174 @@
   
 
 
-<h1 id="project-3-beaderstadt-titanic-classification">Project 3: Beaderstadt Titanic Classification<a class="headerlink" href="#project-3-beaderstadt-titanic-classification" title="Permanent link">&para;</a></h1>
+<h1 id="project-5-ensemble-machine-learning-wine-dataset">Project 5: Ensemble Machine Learning – Wine Dataset<a class="headerlink" href="#project-5-ensemble-machine-learning-wine-dataset" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Predicting passenger survival on the Titanic using multiple machine learning models.</p>
+<p>Exploring ensemble machine learning techniques.</p>
 </blockquote>
 <h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
-<p>In this project, I explore the Titanic dataset to see which factors best predict survival. I train and evaluate three types of classifiers. Decision Tree, Support Vector Machine (SVM), and Neural Network using different feature sets. The goal is to understand how each model performs, visualize their decision-making, and uncover patterns that help predict who survived.</p>
+<p>This project uses the UCI Wine Quality dataset to explore two ensemble models: Random Forest (100) and a Voting model (DT + SVM + NN). The goal was to see which one performed better, understand why, and figure out whether combining different models actually leads to better predictions.</p>
+<p>We focus on two ensemble approaches:</p>
+<ol>
+<li>
+<p>Random Forest (100 trees) - a strong baseline with many decision trees.</p>
+</li>
+<li>
+<p>Voting Classifier (Decision Tree + SVM + Neural Network) - combines different model types to leverage their strengths.</p>
+</li>
+</ol>
+<p>The goal is to evaluate which approach predicts wine quality most accurately and understand why some models perform better than others.</p>
 <hr />
-<h2 id="key-steps-in-this-project">Key Steps in This Project<a class="headerlink" href="#key-steps-in-this-project" title="Permanent link">&para;</a></h2>
-<h2 id="1-import-and-inspect-the-data">1. Import and Inspect the Data<a class="headerlink" href="#1-import-and-inspect-the-data" title="Permanent link">&para;</a></h2>
+<h3 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Loaded the Titanic dataset directly from the seaborn library.</li>
-<li>Inspected the dataset using <code>.info()</code>, <code>.head()</code>, <code>.describe()</code>, and <code>.isnull().sum()</code>.</li>
 <li>
-<p>Explored correlations among numeric features.</p>
+<p>Source: UCI Wine Quality Dataset</p>
 </li>
 <li>
-<p><strong>Insights:</strong></p>
-<ul>
-<li>891 data instances and 15 features.</li>
-<li>Missing values in <code>age</code>, <code>deck</code>, and <code>embark_town</code>.</li>
-<li>Several categorical and boolean features require numeric encoding for modeling.</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="2-data-exploration-and-preparation">2. Data Exploration and Preparation<a class="headerlink" href="#2-data-exploration-and-preparation" title="Permanent link">&para;</a></h2>
-<h3 id="21-handle-missing-values">2.1 Handle Missing Values<a class="headerlink" href="#21-handle-missing-values" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Imputed missing <code>age</code> values with the median.</li>
-<li>Filled missing <code>embark_town</code> values with the mode.</li>
-</ul>
-<h3 id="22-feature-engineering">2.2 Feature Engineering<a class="headerlink" href="#22-feature-engineering" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Added <code>family_size</code> = <code>sibsp</code> + <code>parch</code> + 1.</li>
-<li>Created binary feature <code>alone</code>.</li>
-<li>
-<p>Encoded categorical variables (<code>sex</code> and <code>embarked</code>) as numeric.</p>
+<p>Description: 1599 wine samples with 11 features:</p>
 </li>
 <li>
-<p><strong>Rationale:</strong></p>
-<ul>
-<li>Family size and traveling alone may influence survival probability.</li>
-<li>Numeric encoding enables machine learning models to process these features.</li>
+<p>fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol</p>
+</li>
+<li>
+<p>Target: <code>quality_label</code> - (the new feature created) that has three classes: low (3-4), medium (5-6), high (7-8)</p>
+</li>
 </ul>
+<p>We created two additional columns for modeling:</p>
+<ul>
+<li>
+<p><code>quality_label</code> (string labels)</p>
+</li>
+<li>
+<p><code>quality_numeric</code> (0 = low, 1 = medium, 2 = high)</p>
 </li>
 </ul>
 <hr />
-<h2 id="3-feature-selection-and-target-definition">3. Feature Selection and Target Definition<a class="headerlink" href="#3-feature-selection-and-target-definition" title="Permanent link">&para;</a></h2>
+<h3 id="feature-selection">Feature Selection<a class="headerlink" href="#feature-selection" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Input features explored for modeling:  </li>
-<li><strong>Case 1:</strong> <code>alone</code>  </li>
-<li><strong>Case 2:</strong> <code>age</code>  </li>
 <li>
-<p><strong>Case 3:</strong> <code>age</code> + <code>family_size</code>  </p>
+<p><strong>Target:</strong> <code>quality_label</code></p>
 </li>
 <li>
-<p>Target variable: <code>survived</code>.</p>
+<p><strong>Features:</strong></p>
+</li>
+<li><code>fixed acidity</code>         </li>
+<li><code>volatile acidity</code>      </li>
+<li><code>citric acid</code>          </li>
+<li><code>residual sugar</code>        </li>
+<li><code>chlorides</code>            </li>
+<li><code>free sulfur dioxide</code>  </li>
+<li><code>total sulfur dioxide</code>  </li>
+<li><code>density</code>               </li>
+<li><code>pH</code>                   </li>
+<li><code>sulphates</code>            </li>
+<li>
+<p><code>alcohol</code>  </p>
+</li>
+<li>
+<p><strong>Reasoning:</strong></p>
+</li>
+<li>Keeping all 11 features lets the ensemble models figure out which properties are most important on their own.</li>
+<li>Why the following columns were excluded:</li>
+<li><code>quality</code>- original numeric score (we don’t want to leak the target)</li>
+<li><code>quality_label</code>- that’s our target now</li>
+<li><code>quality_numberic</code> - numeric version of the target </li>
+</ul>
+<hr />
+<h3 id="data-preparation">Data Preparation<a class="headerlink" href="#data-preparation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Converted the original numeric quality scores into categorical labels and numeric categories.</p>
+</li>
+<li>
+<p>Split the data into training (80%) and testing (20%) sets, stratifying by class to preserve class balance.</p>
 </li>
 </ul>
-<p><strong>Reasoning:</strong><br />
-- Using different feature combinations lets us compare performance and see which factors are most predictive.</p>
 <hr />
-<h2 id="4-data-splitting-and-stratification">4. Data Splitting and Stratification<a class="headerlink" href="#4-data-splitting-and-stratification" title="Permanent link">&para;</a></h2>
+<h3 id="models-evaluated">Models Evaluated<a class="headerlink" href="#models-evaluated" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Split into training and test sets using stratified sampling to keep class balance.</li>
-<li>Ensures training/test sets reflect the original distribution of survived vs. not-survived passengers.</li>
-<li></li>
+<li>
+<p>Random Forest (100 trees) - trains many trees in parallel and averages predictions.</p>
+</li>
+<li>
+<p>Voting Classifier (DT + SVM + NN) - combines three different model types for a soft-voting ensemble.</p>
+</li>
+</ul>
+<p>Evaluation metrics:</p>
+<ul>
+<li>
+<p>Accuracy</p>
+</li>
+<li>
+<p>F1 Score (weighted)</p>
+</li>
+<li>
+<p>Confusion matrix for class-level performance</p>
+</li>
+<li>
+<p>Gap calculations: difference between training and testing performance to check for overfitting.</p>
+</li>
 </ul>
 <hr />
-<h2 id="5-model-training-and-evaluation">5. Model Training and Evaluation<a class="headerlink" href="#5-model-training-and-evaluation" title="Permanent link">&para;</a></h2>
-<h3 id="51-decision-tree-classifier">5.1 Decision Tree Classifier<a class="headerlink" href="#51-decision-tree-classifier" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Trained on all three feature sets.</li>
-<li>Evaluated using classification reports and confusion matrices.</li>
-<li>Visualized decision trees to interpret feature importance.</li>
-</ul>
-<h3 id="52-support-vector-machine-svm">5.2 Support Vector Machine (SVM)<a class="headerlink" href="#52-support-vector-machine-svm" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Trained SVM models with different kernels (RBF, linear, polynomial, sigmoid).</li>
-<li>Visualized support vectors in 1D and 2D plots for insights into decision boundaries.</li>
-</ul>
-<h3 id="53-neural-network-classifier">5.3 Neural Network Classifier<a class="headerlink" href="#53-neural-network-classifier" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Trained a Multi-Layer Perceptron using <code>age</code> and <code>family_size</code>.</li>
-<li>Evaluated performance on test data.</li>
-<li>Visualized decision surfaces to understand the model’s learned patterns.</li>
-</ul>
-<p><strong>Reflection:</strong>
-- Comparing models helps identify which algorithm and feature combination best predicts survival.
-- Decision Tree models are interpretable; SVMs handle complex boundaries; Neural Networks capture non-linear patterns.
-- Visualizations provide insights into how models make predictions and where errors occur.</p>
-<hr />
-<h2 id="6-final-thoughts-insights">6. Final Thoughts &amp; Insights<a class="headerlink" href="#6-final-thoughts-insights" title="Permanent link">&para;</a></h2>
-<h3 id="model-comparison-summary">Model Comparison Summary<a class="headerlink" href="#model-comparison-summary" title="Permanent link">&para;</a></h3>
+<h3 id="results-summary">Results Summary<a class="headerlink" href="#results-summary" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Model Type</th>
-<th>Case</th>
-<th>Features Used</th>
-<th>Accuracy</th>
-<th>Precision</th>
-<th>Recall</th>
-<th>F1-Score</th>
+<th>Model</th>
+<th>Train Accuracy</th>
+<th>Test Accuracy</th>
+<th>Train F1</th>
+<th>Test F1</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Decision Tree</td>
-<td>Case 1</td>
-<td>alone</td>
-<td>63%</td>
-<td>51%</td>
-<td>58%</td>
-<td>54%</td>
-<td>Tie / Decision Tree &amp; SVM</td>
+<td>Random Forest (100)</td>
+<td>1.0000</td>
+<td>0.8875</td>
+<td>1.0000</td>
+<td>0.8661</td>
+<td>Slight overfit, best generalization</td>
 </tr>
 <tr>
-<td></td>
-<td>Case 2</td>
-<td>age</td>
-<td>61%</td>
-<td>50%</td>
-<td>17%</td>
-<td>26%</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>Case 3</td>
-<td>age + family_size</td>
-<td>59%</td>
-<td>45%</td>
-<td>33%</td>
-<td>38%</td>
-<td>-</td>
-</tr>
-<tr>
-<td>-------------------</td>
-<td>------</td>
-<td>---------------</td>
-<td>----------</td>
-<td>-----------</td>
-<td>--------</td>
-<td>-----------</td>
-<td>-------</td>
-</tr>
-<tr>
-<td>SVM (RBF Kernel)</td>
-<td>Case 1</td>
-<td>alone</td>
-<td>63%</td>
-<td>51%</td>
-<td>58%</td>
-<td>54%</td>
-<td>Tie / Decision Tree &amp; SVM</td>
-</tr>
-<tr>
-<td></td>
-<td>Case 2</td>
-<td>age</td>
-<td>63%</td>
-<td>71%</td>
-<td>7%</td>
-<td>13%</td>
-<td>Best model for Case 2</td>
-</tr>
-<tr>
-<td></td>
-<td>Case 3</td>
-<td>age + family_size</td>
-<td>63%</td>
-<td>71%</td>
-<td>7%</td>
-<td>13%</td>
-<td>-</td>
-</tr>
-<tr>
-<td>-------------------</td>
-<td>------</td>
-<td>---------------</td>
-<td>----------</td>
-<td>-----------</td>
-<td>--------</td>
-<td>-----------</td>
-<td>-------</td>
-</tr>
-<tr>
-<td>Neural Network (MLP)</td>
-<td>Case 3</td>
-<td>age + family_size</td>
-<td>66%</td>
-<td>65%</td>
-<td>29%</td>
-<td>40%</td>
-<td>Best model for Case 3</td>
+<td>Voting (DT + SVM + NN)</td>
+<td>0.9234</td>
+<td>0.8562</td>
+<td>0.9054</td>
+<td>0.8351</td>
+<td>More balanced training, slightly lower test performance</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Key insights:</strong>
+- Random Forest performed better overall, with higher test accuracy and F1.
+- For both models most mistakes happen between adjacent classes, like confusing medium-quality wines for high or low.
+- Gap analysis shows Random Forest slightly overfit, but still performed well.</p>
+<hr />
+<h3 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h3>
+<p><img alt="png" src="ml05_files/output_27_0.png" /></p>
 <ul>
-<li>Even simple features like alone can provide predictive power.</li>
-<li>Adding family_size improved Neural Network recall, but SVC and Decision Tree saw limited benefit.</li>
-<li>Neural Networks perform best on two-feature sets, capturing subtle patterns in survival.</li>
-<li>Stratified sampling helps ensure reliable evaluation.</li>
-<li>Future work: explore additional features.</li>
+<li>
+<p>Random Forest (100) is the stronger model for predicting wine quality.</p>
+</li>
+<li>
+<p>Using multiple different models together (like the Voting Classifier) can work really well, but only if each model is tuned properly. If one of them isn’t pulling its weight, the whole ensemble won’t perform as well</p>
+</li>
+<li>
+<p>Next steps could include:</p>
+</li>
+<li>
+<p>Explore which features ( like alcohol and pH) consistently increase probability of high-quality label</p>
+</li>
+<li>Trying additional ensemble methods like Random Forest (200, max_depth=10)   which would add more trees, but limit tree depth to reduce overfitting</li>
 </ul>
 <hr />
 <h2 id="how-to-run">How to Run<a class="headerlink" href="#how-to-run" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p><strong>Open the Project Notebook</strong><br />
-   Navigate to <code>notebooks/project03</code> and open the Jupyter notebook:<br />
-<code>ml03_beaderstadt.ipynb</code></p>
+   Navigate to <code>notebooks/project05</code> and open the Jupyter notebook:<br />
+<code>ensemble-beaderstadt.ipynb</code></p>
 </li>
 <li>
 <p><strong>Select the Correct Kernel</strong><br />
@@ -1390,9 +1194,7 @@
    Execute cells sequentially to load data, prepare features, train models, and visualize results.</p>
 </li>
 <li>
-<p><strong>View Results</strong><br />
-   Classification reports, confusion matrices, decision trees, and decision surfaces display inline.<br />
-   Use these outputs to analyze survival patterns and model performance.</p>
+<p>Run the notebook sections sequentially to load data, prepare it, train models, and view results.</p>
 </li>
 </ol>
 

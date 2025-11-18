@@ -1,0 +1,2230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Predicting California housing prices using linear regression and data exploration">
+      
+      
+        <meta name="author" content="Alissa Beaderstadt">
+      
+      
+        <link rel="canonical" href="https://abeaderstadt.github.io/beaderstadt-ml-template/project05/EXAMPLE_ANALYSIS/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Analysis - Beaderstadt Applied ML Projects</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-5-ensemble-models-and-wine-quality-predictions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-header__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beaderstadt Applied ML Projects
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beaderstadt Applied ML Projects" class="md-nav__button md-logo" aria-label="Beaderstadt Applied ML Projects" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Beaderstadt Applied ML Projects
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/abeaderstadt/applied-ml-beaderstadt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 01
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Project 01
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project01/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 02
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Project 02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project02/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 03
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project 03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project03/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 04
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Project 04
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project04/EXAMPLE_ANALYSIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project 05
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Project 05
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-load-and-inspect-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Load and Inspect the Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-prepare-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Prepare the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Prepare the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-convert-quality-values-into-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Convert quality values into labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-add-the-new-column-quality_label" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Add the new column quality_label
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-convert-labels-into-numeric-form-for-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Convert labels into numeric form for modeling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-split-the-data-into-train-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Split the Data into Train and Test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Split the Data into Train and Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-check-class-balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Check Class Balance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-evaluate-model-performance-2-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Evaluate Model Performance (2 Models)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Evaluate Model Performance (2 Models)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-helper-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Create Helper Function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-select-two-models-for-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Select Two Models for Comparison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Model Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-compare-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Compare Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Compare Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Results Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-understanding-the-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Understanding the gaps:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-key-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Key Observations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-7-conclusions-and-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 7. Conclusions and Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 7. Conclusions and Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-summarize-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Summarize Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-my-models-vs-others" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 My Models vs. Others
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-optional-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Optional Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-load-and-inspect-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 1. Load and Inspect the Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-prepare-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 2. Prepare the Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 2. Prepare the Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-convert-quality-values-into-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Convert quality values into labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-add-the-new-column-quality_label" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Add the new column quality_label
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-convert-labels-into-numeric-form-for-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Convert labels into numeric form for modeling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-feature-selection-and-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 3. Feature Selection and Justification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3. Feature Selection and Justification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-define-x-features-and-y-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Define X (features) and y (target)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-split-the-data-into-train-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 4. Split the Data into Train and Test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4. Split the Data into Train and Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-split-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Split the Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-check-class-balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Check Class Balance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-evaluate-model-performance-2-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 5. Evaluate Model Performance (2 Models)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5. Evaluate Model Performance (2 Models)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-helper-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Create Helper Function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-select-two-models-for-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Select Two Models for Comparison
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Model Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-compare-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 6. Compare Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6. Compare Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Results Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-understanding-the-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Understanding the gaps:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-key-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Key Observations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-7-conclusions-and-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section 7. Conclusions and Insights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 7. Conclusions and Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-summarize-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Summarize Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-my-models-vs-others" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 My Models vs. Others
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-optional-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Optional Next Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="project-5-ensemble-models-and-wine-quality-predictions">Project 5: Ensemble Models and Wine Quality Predictions<a class="headerlink" href="#project-5-ensemble-models-and-wine-quality-predictions" title="Permanent link">&para;</a></h1>
+<p><strong>Author:</strong> Alissa Beaderstadt<br>
+<strong>Date:</strong> November 16, 2025<br></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this project I'll use the UCI Wine Quality dataset to compare two ensemble models: Random Forest (100) and a Voting model made up of a Decision Tree, an SVM, and a Neural Network. I'll evaluate performance using accuracy and F1 score, see which model performs better, learn why, and check whether having multiple models “vote” together really helps compared to relying on just one. This project shows how ensemble models can come in handy when simpler techniques aren’t enough, letting me explore more complex approaches.</p>
+<h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
+<p>Import the necessary Python libraries for this notebook.  </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RandomForestClassifier</span><span class="p">,</span>
+    <span class="n">AdaBoostClassifier</span><span class="p">,</span>
+    <span class="n">GradientBoostingClassifier</span><span class="p">,</span>
+    <span class="n">BaggingClassifier</span><span class="p">,</span>
+    <span class="n">VotingClassifier</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span>
+    <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="n">precision_score</span><span class="p">,</span>
+    <span class="n">recall_score</span><span class="p">,</span>
+    <span class="n">f1_score</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="section-1-load-and-inspect-the-data">Section 1. Load and Inspect the Data<a class="headerlink" href="#section-1-load-and-inspect-the-data" title="Permanent link">&para;</a></h2>
+<p>For this project, I pulled in the UCI Wine Quality dataset from the link below:<br>
+https://archive.ics.uci.edu/dataset/186/wine+quality</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load UCI Wine dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;winequality-red.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Display structure and first few rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">pandas</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">frame</span><span class="p">.</span><span class="nx">DataFrame</span><span class="err">&#39;</span><span class="p">&gt;</span>
+<span class="nx">RangeIndex</span><span class="p">:</span><span class="w"> </span><span class="mi">1599</span><span class="w"> </span><span class="nx">entries</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mi">1598</span>
+<span class="nx">Data</span><span class="w"> </span><span class="nx">columns</span><span class="w"> </span><span class="p">(</span><span class="nx">total</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="nx">columns</span><span class="p">):</span>
+<span class="w"> </span><span class="err">#</span><span class="w">   </span><span class="nx">Column</span><span class="w">                </span><span class="nx">Non</span><span class="o">-</span><span class="nx">Null</span><span class="w"> </span><span class="nx">Count</span><span class="w">  </span><span class="nx">Dtype</span><span class="w">  </span>
+<span class="o">---</span><span class="w">  </span><span class="o">------</span><span class="w">                </span><span class="o">--------------</span><span class="w">  </span><span class="o">-----</span><span class="w">  </span>
+<span class="w"> </span><span class="mi">0</span><span class="w">   </span><span class="nx">fixed</span><span class="w"> </span><span class="nx">acidity</span><span class="w">         </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="nx">volatile</span><span class="w"> </span><span class="nx">acidity</span><span class="w">      </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">2</span><span class="w">   </span><span class="nx">citric</span><span class="w"> </span><span class="nx">acid</span><span class="w">           </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">3</span><span class="w">   </span><span class="nx">residual</span><span class="w"> </span><span class="nx">sugar</span><span class="w">        </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">4</span><span class="w">   </span><span class="nx">chlorides</span><span class="w">             </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">5</span><span class="w">   </span><span class="nx">free</span><span class="w"> </span><span class="nx">sulfur</span><span class="w"> </span><span class="nx">dioxide</span><span class="w">   </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">6</span><span class="w">   </span><span class="nx">total</span><span class="w"> </span><span class="nx">sulfur</span><span class="w"> </span><span class="nx">dioxide</span><span class="w">  </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">7</span><span class="w">   </span><span class="nx">density</span><span class="w">               </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">8</span><span class="w">   </span><span class="nx">pH</span><span class="w">                    </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">9</span><span class="w">   </span><span class="nx">sulphates</span><span class="w">             </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">10</span><span class="w">  </span><span class="nx">alcohol</span><span class="w">               </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">float64</span>
+<span class="w"> </span><span class="mi">11</span><span class="w">  </span><span class="nx">quality</span><span class="w">               </span><span class="mi">1599</span><span class="w"> </span><span class="nx">non</span><span class="o">-</span><span class="nx">null</span><span class="w">   </span><span class="nx">int64</span><span class="w">  </span>
+<span class="nx">dtypes</span><span class="p">:</span><span class="w"> </span><span class="nx">float64</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span><span class="w"> </span><span class="nx">int64</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nx">memory</span><span class="w"> </span><span class="nx">usage</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">150.0</span><span class="w"> </span><span class="nx">KB</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed acidity</th>
+      <th>volatile acidity</th>
+      <th>citric acid</th>
+      <th>residual sugar</th>
+      <th>chlorides</th>
+      <th>free sulfur dioxide</th>
+      <th>total sulfur dioxide</th>
+      <th>density</th>
+      <th>pH</th>
+      <th>sulphates</th>
+      <th>alcohol</th>
+      <th>quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7.8</td>
+      <td>0.88</td>
+      <td>0.00</td>
+      <td>2.6</td>
+      <td>0.098</td>
+      <td>25.0</td>
+      <td>67.0</td>
+      <td>0.9968</td>
+      <td>3.20</td>
+      <td>0.68</td>
+      <td>9.8</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.8</td>
+      <td>0.76</td>
+      <td>0.04</td>
+      <td>2.3</td>
+      <td>0.092</td>
+      <td>15.0</td>
+      <td>54.0</td>
+      <td>0.9970</td>
+      <td>3.26</td>
+      <td>0.65</td>
+      <td>9.8</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.2</td>
+      <td>0.28</td>
+      <td>0.56</td>
+      <td>1.9</td>
+      <td>0.075</td>
+      <td>17.0</td>
+      <td>60.0</td>
+      <td>0.9980</td>
+      <td>3.16</td>
+      <td>0.58</td>
+      <td>9.8</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><code>Note:</code><br>
+-  The dataset includes 11 features
+-  The target variable is:
+   -  <code>quality</code> (integer score from 0 to 10)
+- The dataset contains 1599 samples and 12 columns (11 features + target).</p>
+<h2 id="section-2-prepare-the-data">Section 2. Prepare the Data<a class="headerlink" href="#section-2-prepare-the-data" title="Permanent link">&para;</a></h2>
+<p>Includes cleaning, feature engineering, encoding, splitting, helper functions</p>
+<h3 id="21-convert-quality-values-into-labels">2.1 Convert quality values into labels<a class="headerlink" href="#21-convert-quality-values-into-labels" title="Permanent link">&para;</a></h3>
+<p>We group the scores into three categories (low, medium, high) because wine quality is subjective and easier to interpret as groups rather than individual numeric values.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">quality_to_label</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;low&quot;</span>
+    <span class="k">elif</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;medium&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;high&quot;</span>
+</code></pre></div>
+<h3 id="22-add-the-new-column-quality_label">2.2 Add the new column quality_label<a class="headerlink" href="#22-add-the-new-column-quality_label" title="Permanent link">&para;</a></h3>
+<p>Create a new column named <code>quality_label</code> using the function above.</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;quality_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">quality_to_label</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed acidity</th>
+      <th>volatile acidity</th>
+      <th>citric acid</th>
+      <th>residual sugar</th>
+      <th>chlorides</th>
+      <th>free sulfur dioxide</th>
+      <th>total sulfur dioxide</th>
+      <th>density</th>
+      <th>pH</th>
+      <th>sulphates</th>
+      <th>alcohol</th>
+      <th>quality</th>
+      <th>quality_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7.8</td>
+      <td>0.88</td>
+      <td>0.00</td>
+      <td>2.6</td>
+      <td>0.098</td>
+      <td>25.0</td>
+      <td>67.0</td>
+      <td>0.9968</td>
+      <td>3.20</td>
+      <td>0.68</td>
+      <td>9.8</td>
+      <td>5</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.8</td>
+      <td>0.76</td>
+      <td>0.04</td>
+      <td>2.3</td>
+      <td>0.092</td>
+      <td>15.0</td>
+      <td>54.0</td>
+      <td>0.9970</td>
+      <td>3.26</td>
+      <td>0.65</td>
+      <td>9.8</td>
+      <td>5</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.2</td>
+      <td>0.28</td>
+      <td>0.56</td>
+      <td>1.9</td>
+      <td>0.075</td>
+      <td>17.0</td>
+      <td>60.0</td>
+      <td>0.9980</td>
+      <td>3.16</td>
+      <td>0.58</td>
+      <td>9.8</td>
+      <td>6</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+      <td>medium</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="23-convert-labels-into-numeric-form-for-modeling">2.3 Convert labels into numeric form for modeling<a class="headerlink" href="#23-convert-labels-into-numeric-form-for-modeling" title="Permanent link">&para;</a></h3>
+<p>Machine learning algorithms need numeric input, so low, medium, high need to be converted to 0, 1, 2.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">quality_to_number</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;quality_numeric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">quality_to_number</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="section-3-feature-selection-and-justification">Section 3. Feature Selection and Justification<a class="headerlink" href="#section-3-feature-selection-and-justification" title="Permanent link">&para;</a></h2>
+<p><strong>Target:</strong> <code>quality_label</code> (the new column just created)<br></p>
+<p><strong>Features:</strong><br> 
+   - <code>fixed acidity</code>       <br />
+   - <code>volatile acidity</code>    <br />
+   - <code>citric acid</code>        <br />
+   - <code>residual sugar</code>      <br />
+   - <code>chlorides</code>          <br />
+   - <code>free sulfur dioxide</code><br />
+   - <code>total sulfur dioxide</code><br />
+   - <code>density</code>             <br />
+   - <code>pH</code>                 <br />
+   - <code>sulphates</code>          <br />
+   - <code>alcohol</code>  </p>
+<p><strong>Why I chose these features:</strong>
+- These are the actual measurable properties of the wine, which are meaningful when predicting quality.
+- Keeping all 11 features lets the ensemble models figure out which properties are most important on their own.
+- Why the following columns were excluded:
+  -  <code>quality</code>- original numeric score (I don’t want to leak the target)
+  -  <code>quality_label</code>- that’s our target now
+  -  <code>quality_numberic</code> - numeric version of the target </p>
+<h3 id="31-define-x-features-and-y-target">3.1 Define X (features) and y (target)<a class="headerlink" href="#31-define-x-features-and-y-target" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Assign input features to X a pandas DataFrame with 1 or more input features</li>
+<li>Assign target variable to y (as applicable) - a pandas Series with a single target feature</li>
+<li>Double brackets [[ ]]  makes a 2D DataFrame</li>
+<li>Single brackets [ ]  make a 1D Series</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">,</span> <span class="s2">&quot;quality_label&quot;</span><span class="p">,</span> <span class="s2">&quot;quality_numeric&quot;</span><span class="p">])</span>  <span class="c1"># Features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quality_numeric&quot;</span><span class="p">]</span>  <span class="c1"># Target</span>
+</code></pre></div>
+<h2 id="section-4-split-the-data-into-train-and-test">Section 4. Split the Data into Train and Test<a class="headerlink" href="#section-4-split-the-data-into-train-and-test" title="Permanent link">&para;</a></h2>
+<p>Split the data, train the models, evaluate performance, and visualize results.</p>
+<h3 id="41-split-the-data">4.1 Split the Data<a class="headerlink" href="#41-split-the-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Train/test split (stratify to preserve class balance)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="42-check-class-balance">4.2 Check Class Balance<a class="headerlink" href="#42-check-class-balance" title="Permanent link">&para;</a></h3>
+<p>Create visualization to spot potential issues before modeling or very different distributions between train/test.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compare class distribution in train vs test</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Train set quality distribution&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Test set quality distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml05_files/output_20_0.png" /></p>
+<h2 id="section-5-evaluate-model-performance-2-models">Section 5.  Evaluate Model Performance (2 Models)<a class="headerlink" href="#section-5-evaluate-model-performance-2-models" title="Permanent link">&para;</a></h2>
+<p>Now that the data is prepared and split, two different ensemble model approaches will be tested to compare their performance.</p>
+<h3 id="51-create-helper-function">5.1 Create Helper Function<a class="headerlink" href="#51-create-helper-function" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Helper function to train and evaluate models</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">train_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+    <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+    <span class="n">train_f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">)</span>
+    <span class="n">test_f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> Results&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix (Test):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train Accuracy: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Test Accuracy: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train F1 Score: </span><span class="si">{</span><span class="n">train_f1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Test F1 Score: </span><span class="si">{</span><span class="n">test_f1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;Train Accuracy&quot;</span><span class="p">:</span> <span class="n">train_acc</span><span class="p">,</span>
+            <span class="s2">&quot;Test Accuracy&quot;</span><span class="p">:</span> <span class="n">test_acc</span><span class="p">,</span>
+            <span class="s2">&quot;Train F1&quot;</span><span class="p">:</span> <span class="n">train_f1</span><span class="p">,</span>
+            <span class="s2">&quot;Test F1&quot;</span><span class="p">:</span> <span class="n">test_f1</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h3 id="52-select-two-models-for-comparison">5.2 Select Two Models for Comparison<a class="headerlink" href="#52-select-two-models-for-comparison" title="Permanent link">&para;</a></h3>
+<p>For this project I will evaluate and compare:
+  - <strong>Random Forest (100):</strong> A strong baseline model using 100 decision trees.
+  - <strong>Voting (DT + SVM + NN):</strong> Combines diverse models by averaging their predictions.</p>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># 1. Random Forest (100)</span>
+<span class="n">evaluate_model</span><span class="p">(</span>
+    <span class="s2">&quot;Random Forest (100)&quot;</span><span class="p">,</span>
+    <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">results</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 6. Voting Classifier (DT + SVM + NN)</span>
+<span class="n">voting</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span>
+    <span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;DT&quot;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s2">&quot;SVM&quot;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;NN&quot;</span><span class="p">,</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,),</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)),</span>
+    <span class="p">],</span>
+    <span class="n">voting</span><span class="o">=</span><span class="s2">&quot;soft&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">evaluate_model</span><span class="p">(</span>
+    <span class="s2">&quot;Voting (DT + SVM + NN)&quot;</span><span class="p">,</span>
+    <span class="n">voting</span><span class="p">,</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">results</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">Random</span><span class="w"> </span><span class="nv">Forest</span><span class="w"> </span><span class="ss">(</span><span class="mi">100</span><span class="ss">)</span><span class="w"> </span><span class="nv">Results</span>
+<span class="nv">Confusion</span><span class="w"> </span><span class="nv">Matrix</span><span class="w"> </span><span class="ss">(</span><span class="nv">Test</span><span class="ss">)</span>:
+[[<span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">13</span><span class="w">   </span><span class="mi">0</span>]
+<span class="w"> </span>[<span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">256</span><span class="w">   </span><span class="mi">8</span>]
+<span class="w"> </span>[<span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">15</span><span class="w">  </span><span class="mi">28</span>]]
+<span class="nv">Train</span><span class="w"> </span><span class="nv">Accuracy</span>:<span class="w"> </span><span class="mi">1</span>.<span class="mi">0000</span>,<span class="w"> </span><span class="nv">Test</span><span class="w"> </span><span class="nv">Accuracy</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">8875</span>
+<span class="nv">Train</span><span class="w"> </span><span class="nv">F1</span><span class="w"> </span><span class="nv">Score</span>:<span class="w"> </span><span class="mi">1</span>.<span class="mi">0000</span>,<span class="w"> </span><span class="nv">Test</span><span class="w"> </span><span class="nv">F1</span><span class="w"> </span><span class="nv">Score</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">8661</span>
+
+<span class="nv">Voting</span><span class="w"> </span><span class="ss">(</span><span class="nv">DT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">SVM</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">NN</span><span class="ss">)</span><span class="w"> </span><span class="nv">Results</span>
+<span class="nv">Confusion</span><span class="w"> </span><span class="nv">Matrix</span><span class="w"> </span><span class="ss">(</span><span class="nv">Test</span><span class="ss">)</span>:
+[[<span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">12</span><span class="w">   </span><span class="mi">1</span>]
+<span class="w"> </span>[<span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">246</span><span class="w">  </span><span class="mi">18</span>]
+<span class="w"> </span>[<span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">17</span><span class="w">  </span><span class="mi">26</span>]]
+<span class="nv">Train</span><span class="w"> </span><span class="nv">Accuracy</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">9281</span>,<span class="w"> </span><span class="nv">Test</span><span class="w"> </span><span class="nv">Accuracy</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">8500</span>
+<span class="nv">Train</span><span class="w"> </span><span class="nv">F1</span><span class="w"> </span><span class="nv">Score</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">9116</span>,<span class="w"> </span><span class="nv">Test</span><span class="w"> </span><span class="nv">F1</span><span class="w"> </span><span class="nv">Score</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">8325</span>
+</code></pre></div>
+
+<p><code>Note:</code><br>
+- Each row in the confusion matrix represents the actual wine quality (top to bottom: low, medium, high), and each column represents the predicted class (left to right: low, medium, high).</p>
+<ul>
+<li>
+<p><strong>Random Forest (100) Confusion Matrix:</strong></p>
+</li>
+<li>
+<p>13 low-quality wines were predicted as medium.</p>
+</li>
+<li>
+<p>8 medium-quality wines were predicted as high.</p>
+</li>
+<li>
+<p>15 high-quality wines were predicted as medium.</p>
+</li>
+<li>
+<p><strong>Voting (DT + SVM + NN) Confusion Matrix:</strong></p>
+</li>
+<li>
+<p>13 low-quality wines were predicted as medium (same as RF).</p>
+</li>
+<li>
+<p>16 medium-quality wines were predicted as high (slightly more than RF).</p>
+</li>
+<li>
+<p>18 high-quality wines were predicted as medium (slightly more than RF).</p>
+</li>
+<li>
+<p>For both models most mistakes happen between adjacent classes, like confusing medium-quality wines for high or low.</p>
+</li>
+<li>
+<p>Random Forest correctly classified more of the high-quality wines (28 vs 25 for Voting).</p>
+</li>
+</ul>
+<h3 id="53-model-comparison">5.3 Model Comparison<a class="headerlink" href="#53-model-comparison" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Random Forest (100) did better overall than the Voting Classifier.</li>
+<li>Test Accuracy: 0.8875 vs 0.8562</li>
+<li>
+<p>Test F1: 0.8661 vs 0.8351</p>
+</li>
+<li>
+<p>Random Forest got more of the harder-to-classify wines right (third class: 28 vs 24).</p>
+</li>
+<li>Training accuracy was perfect for Random Forest (1.0) vs 0.9234 for Voting, it was a little overfit, but still strong on test data.</li>
+</ul>
+<p><strong>Overall:</strong> Random Forest is the stronger model, it is more accurate and better balanced, even if slightly overfit.</p>
+<p><em>To visualize this comparison, see the bar chart below showing Test Accuracy and Test F1 for both models.</em></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Model names and metrics</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Random Forest (100)&#39;</span><span class="p">,</span> <span class="s1">&#39;Voting (DT + SVM + NN)&#39;</span><span class="p">]</span>
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8875</span><span class="p">,</span> <span class="mf">0.8562</span><span class="p">]</span>
+<span class="n">test_f1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8661</span><span class="p">,</span> <span class="mf">0.8351</span><span class="p">]</span>
+
+<span class="c1"># X positions</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span> 
+
+<span class="c1"># Create the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">test_accuracy</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">)</span>
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">test_f1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test F1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkcyan&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels, title, and legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Model Comparison: Random Forest vs Voting Classifier&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Add text labels on top of bars</span>
+<span class="k">for</span> <span class="n">rects</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rects1</span><span class="p">,</span> <span class="n">rects2</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rects</span><span class="p">:</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+                    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+                    <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml05_files/output_27_0.png" /></p>
+<h2 id="section-6-compare-results">Section 6. Compare Results<a class="headerlink" href="#section-6-compare-results" title="Permanent link">&para;</a></h2>
+<h3 id="61-results-table">6.1 Results Table<a class="headerlink" href="#61-results-table" title="Permanent link">&para;</a></h3>
+<p>First, summarize all model performance in a single table:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a table of results </span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary of All Models:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Summary of All Models:
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model</th>
+      <th>Train Accuracy</th>
+      <th>Test Accuracy</th>
+      <th>Train F1</th>
+      <th>Test F1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Random Forest (100)</td>
+      <td>1.000000</td>
+      <td>0.8875</td>
+      <td>1.000000</td>
+      <td>0.866056</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Voting (DT + SVM + NN)</td>
+      <td>0.928069</td>
+      <td>0.8500</td>
+      <td>0.911619</td>
+      <td>0.832465</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="62-understanding-the-gaps">6.2 Understanding the gaps:<a class="headerlink" href="#62-understanding-the-gaps" title="Permanent link">&para;</a></h3>
+<p>We can also calculate the difference between training and test performance to see how much each model might be overfitting:</p>
+<div class="highlight"><pre><span></span><code><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Accuracy Gap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Train Accuracy&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">]</span>
+<span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;F1 Gap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Train F1&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Test F1&#39;</span><span class="p">]</span>
+
+<span class="c1"># Sort by Test Accuracy to quickly see the best model</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Test Accuracy&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model</th>
+      <th>Train Accuracy</th>
+      <th>Test Accuracy</th>
+      <th>Train F1</th>
+      <th>Test F1</th>
+      <th>Accuracy Gap</th>
+      <th>F1 Gap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Random Forest (100)</td>
+      <td>1.000000</td>
+      <td>0.8875</td>
+      <td>1.000000</td>
+      <td>0.866056</td>
+      <td>0.112500</td>
+      <td>0.133944</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Voting (DT + SVM + NN)</td>
+      <td>0.928069</td>
+      <td>0.8500</td>
+      <td>0.911619</td>
+      <td>0.832465</td>
+      <td>0.078069</td>
+      <td>0.079154</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><code>Note:</code><br>
+- Gap = Train score - Test score
+- A big gap means the model may have learned the training data too well (overfit).
+- A small gap means the model generalizes nicely to new data.</p>
+<h3 id="63-key-observations">6.3 Key Observations<a class="headerlink" href="#63-key-observations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>The Random Forest model did the best overall. It scored perfect accuracy on the training data and still did really well on the test data (~89% accuracy). The gap between training and test (about 11%) shows a bit of overfitting, but it didn’t hurt its performance on new data.</p>
+</li>
+<li>
+<p>The Voting model (three models voting together) also performed well, with ~86% test accuracy. Its training-test gap was smaller (~6-7%), so it was more cautious and generalized a bit more smoothly, but that also means it didn’t reach the same accuracy as Random Forest.</p>
+</li>
+</ul>
+<h2 id="section-7-conclusions-and-insights">Section 7. Conclusions and Insights<a class="headerlink" href="#section-7-conclusions-and-insights" title="Permanent link">&para;</a></h2>
+<h3 id="71-summarize-findings">7.1 Summarize Findings<a class="headerlink" href="#71-summarize-findings" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>The Random Forest learned the patterns in the data really well and was still able to make solid predictions on wines it hadn’t seen before.</p>
+</li>
+<li>
+<p>The voting model was more “cautious”. It didn’t overfit as much, but that also meant it didn’t pick up quite as much detail in the data, so the predictions weren’t as accurate as Random Forest.</p>
+</li>
+</ul>
+<p><strong>Why Random Forest likely outperformed Voting</strong><br>
+- Random Forest works kind of like asking hundreds of tiny decision-makers to vote on each wine. When those decisions are combined, it will pick up useful patterns that simpler models miss.</p>
+<ul>
+<li>The voting model, on the other hand, combines three very different types of models, some of which (like the neural network) usually need extra tuning to perform well. Since I didn’t do much tuning, it didn’t end up outperforming Random Forest.</li>
+</ul>
+<h3 id="72-my-models-vs-others">7.2 My Models vs. Others<a class="headerlink" href="#72-my-models-vs-others" title="Permanent link">&para;</a></h3>
+<p>To double check how my models stacked up, I also looked at Beth’s Project 5 notebook (link below):<br>
+https://github.com/BethSpornitz/ml-bethspornitz/blob/main/notebooks/project05/ensemble_bethspornitz.ipynb<br></p>
+<p>Beth's results were:<br> </p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Train Accuracy</th>
+<th>Test Accuracy</th>
+<th>Train F1</th>
+<th>Test F1</th>
+<th>Acc_Gap</th>
+<th>F1_Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voting (DT + SVM + NN)</td>
+<td>0.917905</td>
+<td>0.865625</td>
+<td>0.90057</td>
+<td>0.842276</td>
+<td>0.052280</td>
+<td>0.058294</td>
+</tr>
+<tr>
+<td>Gradient Boosting (100)</td>
+<td>0.960125</td>
+<td>0.856250</td>
+<td>0.95841</td>
+<td>0.841106</td>
+<td>0.103875</td>
+<td>0.117304</td>
+</tr>
+</tbody>
+</table>
+<p><em>Below is a visualion of Test Accuracy and F1 for my models vs. Beth’s Gradient Boosting model.</em></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Combine my results and Beth&#39;s results</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;My Random Forest (100)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;My Voting (DT + SVM + NN)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Beth: Gradient Boosting (100)&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;Test Accuracy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8875</span><span class="p">,</span> <span class="mf">0.85625</span><span class="p">,</span> <span class="mf">0.85625</span><span class="p">],</span>
+    <span class="s2">&quot;Test F1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.866056</span><span class="p">,</span> <span class="mf">0.835124</span><span class="p">,</span> <span class="mf">0.841106</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Set up bar positions</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_plot</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot bars</span>
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;Test Accuracy&quot;</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test Accuracy&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkslateblue&quot;</span><span class="p">)</span>
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;Test F1&quot;</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test F1&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">)</span>
+
+<span class="c1"># Labels, title, ticks</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Score&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparison of Test Accuracy and F1 Scores&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;Model&quot;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Add values on top of bars</span>
+<span class="k">for</span> <span class="n">rects</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rects1</span><span class="p">,</span> <span class="n">rects2</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rects</span><span class="p">:</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+                    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>  <span class="c1"># vertical offset</span>
+                    <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../ml05_files/output_37_0.png" /></p>
+<ul>
+<li>
+<p>My Random Forest did better than both of those ensembles, hitting 0.8875 accuracy on the test set.</p>
+</li>
+<li>
+<p>Beth’s Gradient Boosting (100) and my Voting ensemble ended up with similar accuracy (~0.85), but her model had a bigger train-test gap, while mine was a bit more conservative.</p>
+</li>
+<li>
+<p>Overall, seeing her results actually made me feel even more confident in Random Forest for this dataset. Even with different modeling approaches, it still came out on top for handling new data.</p>
+</li>
+<li>
+<p>If I had to choose a “best model” of the three, Random Forest is the winner.</p>
+</li>
+</ul>
+<h3 id="73-optional-next-steps">7.3 Optional Next Steps<a class="headerlink" href="#73-optional-next-steps" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Run Random Forest (200, max_depth=10) which would add more trees, but limit tree depth to reduce overfitting.</p>
+</li>
+<li>
+<p>Scale and tune SVM, then re-run Voting model.</p>
+</li>
+<li>
+<p>Address any class imbalance and compare F1.</p>
+</li>
+<li>
+<p>Explore which features ( like alcohol and pH) consistently increase probability of high-quality label.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
