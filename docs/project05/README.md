@@ -101,6 +101,8 @@ Evaluation metrics:
 
 ### Conclusions
 
+![png](ml05_files/output_27_0.png)
+
 - Random Forest (100) is the stronger model for predicting wine quality.
 
 - Using multiple different models together (like the Voting Classifier) can work really well, but only if each model is tuned properly. If one of them isn’t pulling its weight, the whole ensemble won’t perform as well
