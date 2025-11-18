@@ -13,3 +13,4 @@ Projects index:
 - [**Project 02: Exploring and Manipulating the Titanic Dataset**](project02/README.md)
 - [**Project 03: Titanic Classification**](project03/README.md)
 - [**Project 04: Predicting Titanic Fare Using Regression**](project04/README.md)
+- [**Project 05: Ensemble Models and Wine Quality Predictions**](project05/README.md)
