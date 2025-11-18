@@ -7,9 +7,9 @@ This project uses the UCI Wine Quality dataset to explore two ensemble models: R
 
 We focus on two ensemble approaches:
 
-    1. Random Forest (100 trees) - a strong baseline with many decision trees.
+1. Random Forest (100 trees) - a strong baseline with many decision trees.
 
-    2. Voting Classifier (Decision Tree + SVM + Neural Network) - combines different model types to leverage their strengths.
+2. Voting Classifier (Decision Tree + SVM + Neural Network) - combines different model types to leverage their strengths.
 
 The goal is to evaluate which approach predicts wine quality most accurately and understand why some models perform better than others.
 
@@ -110,7 +110,6 @@ Evaluation metrics:
 - Next steps could include:
 
   - Explore which features ( like alcohol and pH) consistently increase probability of high-quality label
-
   - Trying additional ensemble methods like Random Forest (200, max_depth=10)	which would add more trees, but limit tree depth to reduce overfitting
 ---
 
