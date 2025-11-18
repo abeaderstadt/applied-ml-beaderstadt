@@ -3,13 +3,13 @@
 
 
 ## Project Overview
-This project explores ensemble machine learning techniques to predict red wine quality using physicochemical properties. Ensemble methods combine multiple models to improve predictive performance, reduce overfitting, and generalize better to new data.
+This project uses the UCI Wine Quality dataset to explore two ensemble models: Random Forest (100) and a Voting model (DT + SVM + NN). The goal was to see which one performed better, understand why, and figure out whether combining different models actually leads to better predictions.
 
 We focus on two ensemble approaches:
 
-    1. Random Forest (100 trees) – a strong baseline with many decision trees.
+    1. Random Forest (100 trees) - a strong baseline with many decision trees.
 
-    2. Voting Classifier (Decision Tree + SVM + Neural Network) – combines different model types to leverage their strengths.
+    2. Voting Classifier (Decision Tree + SVM + Neural Network) - combines different model types to leverage their strengths.
 
 The goal is to evaluate which approach predicts wine quality most accurately and understand why some models perform better than others.
 
@@ -19,13 +19,13 @@ The goal is to evaluate which approach predicts wine quality most accurately and
 
 - Source: UCI Wine Quality Dataset
 
-- Description: 1599 red wine samples with 11 physicochemical features:
+- Description: 1599 wine samples with 11 features:
 
   - fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol
 
-- Target: `quality_label` - categorical wine quality with three classes: low (3–4), medium (5–6), high (7–8)
+- Target: `quality_label` - (the new feature created) that has three classes: low (3-4), medium (5-6), high (7-8)
 
-We created two derived columns for modeling:
+We created two additional columns for modeling:
 
 - `quality_label` (string labels)
 
@@ -37,9 +37,25 @@ We created two derived columns for modeling:
 
 - **Target:** `quality_label`
 
-- **Features:** All columns except `quality`, `quality_label`, and `quality_numeric`
+- **Features:**
+   - `fixed acidity`         
+   - `volatile acidity`      
+   - `citric acid`          
+   - `residual sugar`        
+   - `chlorides`            
+   - `free sulfur dioxide`  
+   - `total sulfur dioxide`  
+   - `density`               
+   - `pH`                   
+   - `sulphates`            
+   - `alcohol`  
 
-- Reasoning: These 11 physicochemical properties are meaningful predictors of wine quality. Excluding any version of the target prevents data leakage.
+- **Reasoning:**
+- Keeping all 11 features lets the ensemble models figure out which properties are most important on their own.
+- Why the following columns were excluded:
+  -  `quality`- original numeric score (we don’t want to leak the target)
+  -  `quality_label`- that’s our target now
+  -  `quality_numberic` - numeric version of the target 
 
 ---
 
@@ -53,9 +69,9 @@ We created two derived columns for modeling:
 
 ### Models Evaluated
 
-- Random Forest (100 trees) – trains many trees in parallel and averages predictions.
+- Random Forest (100 trees) - trains many trees in parallel and averages predictions.
 
-- Voting Classifier (DT + SVM + NN) – combines three different model types for a soft-voting ensemble.
+- Voting Classifier (DT + SVM + NN) - combines three different model types for a soft-voting ensemble.
 
 Evaluation metrics:
 
@@ -77,26 +93,23 @@ Evaluation metrics:
 
 
 **Key insights:**
-- Random Forest performed better overall, achieving higher test accuracy and F1.
-- Voting ensemble misclassified more of the hardest-to-predict wines (high-quality class).
-- Gap analysis shows Random Forest slightly overfit, but still generalized well.
+- Random Forest performed better overall, with higher test accuracy and F1.
+- For both models most mistakes happen between adjacent classes, like confusing medium-quality wines for high or low.
+- Gap analysis shows Random Forest slightly overfit, but still performed well.
 
 ---
 
 ### Conclusions
 
-- Random Forest (100) is the stronger model for predicting red wine quality in this dataset.
+- Random Forest (100) is the stronger model for predicting wine quality.
 
-- Ensemble methods that combine multiple heterogeneous models (like Voting Classifier) are promising, but performance depends heavily on the individual models and their tuning.
+- Using multiple different models together (like the Voting Classifier) can work really well, but only if each model is tuned properly. If one of them isn’t pulling its weight, the whole ensemble won’t perform as well
 
 - Next steps could include:
 
-  - Hyperparameter tuning for both models
+  - Explore which features ( like alcohol and pH) consistently increase probability of high-quality label
 
-  - Feature importance analysis to identify key drivers of wine quality
-
-  - Trying additional ensemble methods like Gradient Boosting or AdaBoost
-
+  - Trying additional ensemble methods like Random Forest (200, max_depth=10)	which would add more trees, but limit tree depth to reduce overfitting
 ---
 
 ## How to Run
